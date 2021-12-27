@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "720412000915",
+    "project_id": "fir-signin-4a810",
+    "storage_bucket": "fir-signin-4a810.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720412000915:android:7e6888ef3a3325c73bc366",
+        "android_client_info": {
+          "package_name": "com.afrahjadan.elderlycareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720412000915-3n197iilkpu837v9m7705a82un9ea1o4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.afrahjadan.elderlycareapp",
+            "certificate_hash": "3ef511ebd43bc156e129ff7e48c7b93d0fd63b13"
+          }
+        },
+        {
+          "client_id": "720412000915-hcfh685i8sbchg3tvl9h0cen9f8jfboj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB4YjKVz7f7MduXKl5c5RW9hN-mp2MGF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720412000915-hcfh685i8sbchg3tvl9h0cen9f8jfboj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

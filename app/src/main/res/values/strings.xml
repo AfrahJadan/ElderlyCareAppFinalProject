@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ElderlyCareApp</string>
+    <string name="welcome_to_signin">Welcome to SignIn</string>
+
+</resources>

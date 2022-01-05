@@ -3,7 +3,10 @@ package com.afrahjadan.elderlycareapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.afrahjadan.elderlycareapp.databinding.ActivityHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
@@ -12,18 +15,25 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var firebaseAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         firebaseAuth =FirebaseAuth.getInstance()
         checkUser()
 
-        binding.logoutBtn.setOnClickListener {
-            firebaseAuth.signOut()
-            checkUser()
-        }
-    }
+//        binding.logoutBtn.setOnClickListener {
+//            firebaseAuth.signOut()
+//            checkUser()
+//        }
 
+
+
+        val btnNavView =findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navController =findNavController(R.id.HomeNavigationFragment)
+        btnNavView.setupWithNavController(navController)
+
+    }
     private fun checkUser() {
        val firebaseUser = firebaseAuth.currentUser
         if(firebaseUser == null){
@@ -32,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
         }
         else{
             val email = firebaseUser.email
-            binding.emailTv.text =email
+      //      binding.emailTv.text =email
         }
 
     }

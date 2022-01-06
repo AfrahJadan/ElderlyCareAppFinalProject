@@ -42,13 +42,20 @@ class ViewAndAddMedicineFragment : Fragment() {
         return binding.root
 
     }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val medItem = arrayListOf(
+            MedicineItem("dite", 3, "once"),
+            MedicineItem("dite", 3, "once"),
+            MedicineItem("dite", 3, "once"),
+            MedicineItem("dite", 3, "once"),
+            MedicineItem("dite", 3, "once"),
+            MedicineItem("dite", 3, "once")
+        )
         binding.recycleMed.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = MedAdapter(mutableListOf())
+            adapter = MedAdapter(medItem)
         }
 
     }

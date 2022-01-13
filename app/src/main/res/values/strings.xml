@@ -6,5 +6,16 @@
     <string name="welcome_to_elderly_care"><b>Welcome to Elderly Care</b></string>
     <string name="medicine">Medicine</string>
     <string name="appointment">Appointment</string>
+    <string name="time">Time</string>
+    <string name="dose">Dose</string>
+    <string name="medicine_type">Medicine Type</string>
+    <string name="date">Date</string>
+    <string name="appointment_reason">Appoitment Reason</string>
+<!--    <string name="med_type">Medicine Type: %1$s</string>-->
+<!--    <string name="med_dose">Medicine Dose: %1$s</string>-->
+<!--    <string name="med_time">Medicine Time: %1$s</string>-->
+
+
+
 
 </resources>

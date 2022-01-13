@@ -23,11 +23,11 @@ class HomeFragment : Fragment() {
        // return inflater.inflate(R.layout.fragment_home, container, false)
         binding = FragmentHomeBinding.inflate(layoutInflater)
         binding.btnMed.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragment2ToViewAndAddMedicineFragment()
+            val action = HomeFragmentDirections.actionHomeFragment2ToViewMedicineFragment()
             findNavController().navigate(action)
         }
         binding.btnApp.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragment2ToViewAndAddAppointmentFragment()
+            val action = HomeFragmentDirections.actionHomeFragment2ToViewAppointmentFragment()
             findNavController().navigate(action)
         }
         return binding.root

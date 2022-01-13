@@ -1,15 +1,15 @@
 package com.afrahjadan.elderlycareapp.medicineAdapter
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import androidx.recyclerview.widget.RecyclerView
 import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.data.MedicineItem
 
-class MedAdapter(private val medList:List<MedicineItem>):RecyclerView.Adapter<MedAdapter.MedViewHolder>() {
+class MedAdapter(private val medList: MutableList<MedicineItem?>):RecyclerView.Adapter<MedAdapter.MedViewHolder>() {
 
     class MedViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
        val medShow:TextView =itemView.findViewById(R.id.medShow)
@@ -22,15 +22,12 @@ class MedAdapter(private val medList:List<MedicineItem>):RecyclerView.Adapter<Me
            parent , false)
         return MedViewHolder(medAdapterLayout)
     }
-
     override fun onBindViewHolder(holder: MedViewHolder, position: Int) {
        val medItem =medList[position]
-        holder.medShow.text=medItem.medType
-        holder.dosMed.text =medItem.Dose.toString()
-        holder.medTime.text = medItem.medTime
-
+        holder.medShow.text=medItem?.medType
+        holder.dosMed.text =medItem?.dose.toString()
+        holder.medTime.text = medItem?.medTime
     }
-
     override fun getItemCount(): Int {
         return medList.size
     }

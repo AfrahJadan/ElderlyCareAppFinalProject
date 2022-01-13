@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6FFE2"
-    tools:context=".fragment.ViewAndAddMedicineFragment">
+    tools:context=".fragment.ViewMedicineFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_med"
@@ -18,18 +18,17 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/med_item_list"/>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/med_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:gravity="bottom|end"
+        android:layout_gravity="bottom|end"
         android:text="Add_medicine"
-        app:icon="@drawable/ic_baseline_add_24"
+        android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="@color/baby_Green"
-        android:textColor="#AA512F"
         app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="add_Med"
         tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

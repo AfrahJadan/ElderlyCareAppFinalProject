@@ -28,7 +28,8 @@
                     android:id="@+id/Add_app_Date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appoitment Date" />
+                    android:hint="Appoitment Date"
+                    android:inputType="date"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +55,7 @@
                 android:padding="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/timeEt"
+                    android:id="@+id/appResEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Appoitment Reason"

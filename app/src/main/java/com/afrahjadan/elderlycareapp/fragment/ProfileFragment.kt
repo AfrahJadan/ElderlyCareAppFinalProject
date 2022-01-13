@@ -46,7 +46,7 @@ class ProfileFragment : Fragment() {
         }
         else{
             val email = firebaseUser.email
-            binding.emailTv.text =email
+            binding.emailTv.text = email
         }
 
     }

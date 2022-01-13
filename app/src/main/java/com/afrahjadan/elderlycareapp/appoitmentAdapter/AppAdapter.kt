@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
 
-class AppAdapter(private val appList:ArrayList<AppointmentItem>):RecyclerView.Adapter<AppAdapter.AppViewHolder>() {
-
+class AppAdapter(private val appList:MutableList<AppointmentItem?>):RecyclerView.Adapter<AppAdapter.AppViewHolder>() {
 
     class AppViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val appTime:TextView = itemView.findViewById(R.id.timeAppTv)
@@ -25,10 +24,10 @@ class AppAdapter(private val appList:ArrayList<AppointmentItem>):RecyclerView.Ad
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
         val appItem = appList[position]
-        holder.appTime.text = appItem.appointmentTime
-        holder.appDate.text = appItem.appointmentDate
-        holder.appRes.text = appItem.appointmentReason
-        holder.hosName.text = appItem.hospitalName
+        holder.appTime.text = appItem?.appointmentTime
+        holder.appDate.text = appItem?.appointmentDate
+        holder.appRes.text = appItem?.appointmentReason
+        holder.hosName.text = appItem?.hospitalName
     }
 
     override fun getItemCount(): Int {

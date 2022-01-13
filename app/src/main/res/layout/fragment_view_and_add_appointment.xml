@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6FFE2"
-    tools:context=".fragment.ViewAndAddAppointmentFragment">
-<!--here the new-->
+    tools:context=".fragment.ViewAppointmentFragment">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_app"
         android:layout_width="match_parent"
@@ -16,18 +15,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/app_item_list"/>
+        tools:listitem="@layout/app_item_list" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/app_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="15dp"
-        android:gravity="bottom|end"
+        android:contentDescription="addApp"
+        android:src="@drawable/ic_baseline_add_24"
         android:text="Add Appointment"
-        android:textColor="#AA512F"
-        app:backgroundTint="@color/baby_Green"
-        app:icon="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="HardcodedText" />

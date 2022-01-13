@@ -22,13 +22,6 @@ class HomeActivity : AppCompatActivity() {
         firebaseAuth =FirebaseAuth.getInstance()
         checkUser()
 
-//        binding.logoutBtn.setOnClickListener {
-//            firebaseAuth.signOut()
-//            checkUser()
-//        }
-
-
-
         val btnNavView =findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController =findNavController(R.id.HomeNavigationFragment)
         btnNavView.setupWithNavController(navController)
@@ -42,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
         }
         else{
             val email = firebaseUser.email
-      //      binding.emailTv.text =email
+//            binding.emailTv.text =email
         }
 
     }

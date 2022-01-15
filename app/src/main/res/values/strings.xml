@@ -11,11 +11,13 @@
     <string name="medicine_type">Medicine Type</string>
     <string name="date">Date</string>
     <string name="appointment_reason">Appoitment Reason</string>
-<!--    <string name="med_type">Medicine Type: %1$s</string>-->
-<!--    <string name="med_dose">Medicine Dose: %1$s</string>-->
-<!--    <string name="med_time">Medicine Time: %1$s</string>-->
-
-
+    <string name="appointment_date">Appointment Date:</string>
+    <string name="appointment_time">Appointment Time:</string>
+    <string name="appointment_reason_tv">Appointment Reason:</string>
+    <string name="hospital_name">Hospital Name:</string>
+    <string name="hospital_name_et">Hospital Name</string>
+    <string name="deletemedimg">deleteMedImg</string>
+   
 
 
 </resources>

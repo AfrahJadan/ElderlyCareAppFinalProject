@@ -66,5 +66,20 @@
         <action
             android:id="@+id/action_viewMedicineFragment_to_addMedicineInfoFragment"
             app:destination="@id/addMedicineInfoFragment" />
+        <action
+            android:id="@+id/action_viewMedicineFragment_to_editMedicineFragment"
+            app:destination="@id/editMedicineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMedicineFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.EditMedicineFragment"
+        android:label="fragment_edit_medicine"
+        tools:layout="@layout/fragment_edit_medicine" >
+        <action
+            android:id="@+id/action_editMedicineFragment_to_viewMedicineFragment"
+            app:destination="@id/viewMedicineFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

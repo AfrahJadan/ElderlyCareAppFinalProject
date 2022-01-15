@@ -43,11 +43,26 @@ class ViewMedicineFragment : Fragment() {
                 ViewMedicineFragmentDirections.actionViewMedicineFragmentToAddMedicineInfoFragment()
             findNavController().navigate(action)
         }
+
         eventChangeListener()
         return binding.root
 
     }
     private fun eventChangeListener() {
+//     val getMad = db.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString())
+//            .collection("Medicines").addSnapshotListener(object : EventListener<QuerySnapshot> {
+//        override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+//                if (error != null) {
+//                    Log.e("error", error.message.toString())
+//                    return
+//                }
+//                for (dc: DocumentChange in value?.documentChanges!!) {
+//                    if (dc.type == DocumentChange.Type.ADDED) {
+//                        medInfo.add(dc.document.toObject(MedicineItem::class.java))
+//                    }
+//                }
+
+
         db.collection("Medicines").addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                 if (error != null) {

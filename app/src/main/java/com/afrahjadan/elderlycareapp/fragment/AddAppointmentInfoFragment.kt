@@ -31,23 +31,26 @@ class AddAppointmentInfoFragment : Fragment() {
         binding = FragmentAddAppointmentInfoBinding.inflate(inflater, container, false)
         binding.SaveToAddBtnApp.setOnClickListener {
 
-            val action = AddAppointmentInfoFragmentDirections.actionAddAppointmentInfoFragmentToViewAppointmentFragment()
+            val action =
+                AddAppointmentInfoFragmentDirections.actionAddAppointmentInfoFragmentToViewAppointmentFragment()
             findNavController().navigate(action)
-            if (binding.AddAppDate.text!!.isNotEmpty() && binding.appTimeEt.text!!.isNotEmpty() && binding.appResEt.text!!.isNotEmpty() && binding.hospitalName.text!!.isNotEmpty()) {
-                val appAdd = hashMapOf(
-                    "appointmentDate" to binding.AddAppDate.text.toString(),
-                    "appointmentTime" to binding.appTimeEt.text.toString(),
-                    "appointmentReason" to binding.appResEt.text.toString(),
-                    "hospitalName" to binding.hospitalName.text.toString(),
-                    "appUserId" to FirebaseAuth.getInstance().currentUser?.uid.toString()
+            if (binding.AddAppDate.text!!.isNotEmpty() && binding.appTimeEt.text!!.isNotEmpty()
+                && binding.appResEt.text!!.isNotEmpty() && binding.hospitalName.text!!.isNotEmpty()
+            ) {
+                val add = appDataBase.collection("Appointment").document()
+                val appAdd = AppointmentItem(
+                    binding.AddAppDate.text.toString(),
+                    binding.appTimeEt.text.toString(),
+                    binding.appResEt.text.toString(),
+                    binding.hospitalName.text.toString(),
+                    FirebaseAuth.getInstance().currentUser?.uid.toString(),
+                    add.id
                 )
-
-                appDataBase.collection("Appointment")
-                    .add(appAdd)
-                    .addOnSuccessListener { documentReference ->
+                add.set(appAdd)
+                    .addOnSuccessListener {
                         Toast.makeText(
                             context,
-                            "DocumentSnapshot added with ID: ${documentReference.id}",
+                            "Successfully Added",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -55,13 +58,32 @@ class AddAppointmentInfoFragment : Fragment() {
                         Toast.makeText(context, "Error:" + e.toString(), Toast.LENGTH_SHORT).show()
                     }
             } else {
-                Toast.makeText(context, "Please Enter Appointment First", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context, "Please Enter Appointment First",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-
-
         }
+            return binding.root
 
-        return binding.root
     }
-
 }
+
+
+//                val appAdd = hashMapOf(
+//                    "appointmentDate" to binding.AddAppDate.text.toString(),
+//                    "appointmentTime" to binding.appTimeEt.text.toString(),
+//                    "appointmentReason" to binding.appResEt.text.toString(),
+//                    "hospitalName" to binding.hospitalName.text.toString(),
+//                    "appUserId" to FirebaseAuth.getInstance().currentUser?.uid.toString()
+//                )
+
+//                appDataBase.collection("Appointment")
+//                    .add(appAdd)
+
+
+
+
+
+
+

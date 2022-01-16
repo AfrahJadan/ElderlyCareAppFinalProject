@@ -2,31 +2,35 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.EditMedicineFragment">
+    tools:context=".fragment.EditAppointmentFragment">
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="vertical">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:padding="8dp" >
+                android:padding="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/medTypeEdit"
+                    android:id="@+id/edit_app_Date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Type" />
+                    android:hint="Appointment Date"
+                    android:inputType="date"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -37,11 +41,11 @@
                 android:padding="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/doseEdit"
+                    android:id="@+id/app_timeEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Dose"
-                    android:inputType="number" />
+                    android:hint="Appointment Time"
+                    android:inputType="time" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -52,11 +56,12 @@
                 android:padding="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/medDateEdit"
+                    android:id="@+id/appResEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Date"
-                    android:inputType="date" />
+                    android:hint="Appointment Reason"
+                    android:inputType="text"
+                    android:minHeight="100dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -67,22 +72,24 @@
                 android:padding="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/medTimeEdit"
+                    android:id="@+id/hospital_name_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Time"
-                    android:inputType="time"/>
+                    android:hint="Hospital Name"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <Button
+                android:id="@+id/SaveEditBtn_app"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/SaveToEditBtn"
                 android:hint="Save Changes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/Widget.AppCompat.Button"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

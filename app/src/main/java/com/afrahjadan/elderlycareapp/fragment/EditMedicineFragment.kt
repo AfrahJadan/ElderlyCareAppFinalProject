@@ -16,8 +16,8 @@ import com.google.firebase.ktx.Firebase
 
 
 class EditMedicineFragment : Fragment() {
- private lateinit var binding:FragmentEditMedicineBinding
- private val navarg:EditMedicineFragmentArgs by navArgs()
+    private lateinit var binding: FragmentEditMedicineBinding
+    private val navarg: EditMedicineFragmentArgs by navArgs()
     val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class EditMedicineFragment : Fragment() {
     ): View {
         binding = FragmentEditMedicineBinding.inflate(layoutInflater)
         getMadData()
-         return binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,34 +39,38 @@ class EditMedicineFragment : Fragment() {
 
         binding.SaveToEditBtn.setOnClickListener {
             setMadData()
-            val action = EditMedicineFragmentDirections.actionEditMedicineFragmentToViewMedicineFragment()
+            val action =
+                EditMedicineFragmentDirections.actionEditMedicineFragmentToViewMedicineFragment()
             findNavController().navigate(action)
         }
     }
 
-    private fun getMadData(){
+    private fun getMadData() {
         val id = navarg.id
         db.collection("Medicines").document(id).get()
             .addOnSuccessListener {
                 val getMad = it.toObject(MedicineItem::class.java)
-               binding.apply {
-                   doseEdit.setText(getMad?.dose.toString())
-                   medDateEdit.setText(getMad?.medDate.toString())
-                   medTimeEdit.setText(getMad?.medTime.toString())
-                   medTypeEdit.setText(getMad?.medType.toString())
-               }
+                binding.apply {
+                    doseEdit.setText(getMad?.dose.toString())
+                    medDateEdit.setText(getMad?.medDate.toString())
+                    medTimeEdit.setText(getMad?.medTime.toString())
+                    medTypeEdit.setText(getMad?.medType.toString())
+                }
             }
     }
-    private fun setMadData(){
-                 val id = navarg.id
+
+    private fun setMadData() {
+        val id = navarg.id
         db.collection("Medicines").document(id)
-            .set(MedicineItem(
-                   dose = binding.doseEdit.text.toString().toInt(),
-                   medDate = binding.medDateEdit.text.toString(),
-                   medTime =   binding.medTimeEdit.text.toString(),
-                 medType =   binding.medTypeEdit.text.toString() ,
-                id = id   ,
-                userId = Firebase.auth.currentUser!!.uid
-            ), SetOptions.merge())
+            .set(
+                MedicineItem(
+                    dose = binding.doseEdit.text.toString().toInt(),
+                    medDate = binding.medDateEdit.text.toString(),
+                    medTime = binding.medTimeEdit.text.toString(),
+                    medType = binding.medTypeEdit.text.toString(),
+                    id = id,
+                    userId = Firebase.auth.currentUser!!.uid
+                ), SetOptions.merge()
+            )
     }
 }

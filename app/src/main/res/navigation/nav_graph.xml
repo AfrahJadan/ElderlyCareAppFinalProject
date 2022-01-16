@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_viewAppointmentFragment_to_addAppointmentInfoFragment"
             app:destination="@id/addAppointmentInfoFragment" />
+        <action
+            android:id="@+id/action_viewAppointmentFragment_to_editAppointmentFragment"
+            app:destination="@id/editAppointmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewMedicineFragment"
@@ -78,6 +81,18 @@
         <action
             android:id="@+id/action_editMedicineFragment_to_viewMedicineFragment"
             app:destination="@id/viewMedicineFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editAppointmentFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.EditAppointmentFragment"
+        android:label="fragment_edit_appointment"
+        tools:layout="@layout/fragment_edit_appointment" >
+        <action
+            android:id="@+id/action_editAppointmentFragment_to_viewAppointmentFragment"
+            app:destination="@id/viewAppointmentFragment" />
         <argument
             android:name="id"
             app:argType="string" />

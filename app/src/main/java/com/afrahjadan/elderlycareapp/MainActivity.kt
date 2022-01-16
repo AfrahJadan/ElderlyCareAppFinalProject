@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.googleSignInBtn.setOnClickListener {
             Log.d(TAG, "onCreate:begin Google SignIn")
             val intent = googleSignInClient.signInIntent
-            //packageManager.getLaunchIntentForPackage("com.android.chrome")
+            packageManager.getLaunchIntentForPackage("com.android.chrome")
             startActivityForResult(intent, RC_SIGN_IN)
         }
     }
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 val firebaseUser = firebaseAuth.currentUser
 
                 val uid = firebaseUser!!.uid
-                val email = firebaseUser!!.email
+                val email = firebaseUser.email
 
                 Log.d(TAG, "firebaseAuthWithGoogleAccount: Uid: $uid")
                 Log.d(TAG, "firebaseAuthWithGoogleAccount: Uid: $email")

@@ -20,8 +20,11 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment2_to_addMedicineInfoFragment"
-            app:destination="@id/addMedicineInfoFragment" />
+            android:id="@+id/action_homeFragment2_to_viewAppointmentFragment"
+            app:destination="@id/viewAppointmentFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_viewMedicineFragment"
+            app:destination="@id/viewMedicineFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -34,16 +37,64 @@
         android:label="fragment_add_medicine_info"
         tools:layout="@layout/fragment_add_medicine_info" >
         <action
-            android:id="@+id/action_addMedicineInfoFragment_to_viewAndAddMedicineFragment"
-            app:destination="@id/viewAndAddMedicineFragment" />
+            android:id="@+id/action_addMedicineInfoFragment_to_viewMedicineFragment"
+            app:destination="@id/viewMedicineFragment" />
     </fragment>
     <fragment
-        android:id="@+id/viewAndAddMedicineFragment"
-        android:name="com.afrahjadan.elderlycareapp.fragment.ViewAndAddMedicineFragment"
-        android:label="fragment_view_and_add_medicine"
-        tools:layout="@layout/fragment_view_and_add_medicine" >
+        android:id="@+id/addAppointmentInfoFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.AddAppointmentInfoFragment"
+        android:label="fragment_add_appointment_info"
+        tools:layout="@layout/fragment_add_appointment_info" >
         <action
-            android:id="@+id/action_viewAndAddMedicineFragment_to_addMedicineInfoFragment"
+            android:id="@+id/action_addAppointmentInfoFragment_to_viewAppointmentFragment"
+            app:destination="@id/viewAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewAppointmentFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.ViewAppointmentFragment"
+        android:label="fragment_view_appointment"
+        tools:layout="@layout/fragment_view_and_add_appointment">
+        <action
+            android:id="@+id/action_viewAppointmentFragment_to_addAppointmentInfoFragment"
+            app:destination="@id/addAppointmentInfoFragment" />
+        <action
+            android:id="@+id/action_viewAppointmentFragment_to_editAppointmentFragment"
+            app:destination="@id/editAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewMedicineFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.ViewMedicineFragment"
+        android:label="fragment_view_medicine"
+        tools:layout="@layout/fragment_view_and_add_medicine">
+        <action
+            android:id="@+id/action_viewMedicineFragment_to_addMedicineInfoFragment"
             app:destination="@id/addMedicineInfoFragment" />
+        <action
+            android:id="@+id/action_viewMedicineFragment_to_editMedicineFragment"
+            app:destination="@id/editMedicineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMedicineFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.EditMedicineFragment"
+        android:label="fragment_edit_medicine"
+        tools:layout="@layout/fragment_edit_medicine" >
+        <action
+            android:id="@+id/action_editMedicineFragment_to_viewMedicineFragment"
+            app:destination="@id/viewMedicineFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editAppointmentFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.EditAppointmentFragment"
+        android:label="fragment_edit_appointment"
+        tools:layout="@layout/fragment_edit_appointment" >
+        <action
+            android:id="@+id/action_editAppointmentFragment_to_viewAppointmentFragment"
+            app:destination="@id/viewAppointmentFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

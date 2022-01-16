@@ -8,6 +8,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        relese {
+            storeFile file('C:\\Users\\AFRAH\\Desktop\\ElderlyCareAppKey.jks')
+            storePassword '123456789'
+            keyAlias 'key0'
+            keyPassword '123456789'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -15,7 +23,7 @@ android {
         minSdk 28
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,6 +32,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.relese
         }
     }
     compileOptions {
@@ -52,7 +61,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     // Also declare the dependency for the Google Play services library and specify its version
-    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+    implementation 'com.google.android.gms:play-services-auth:20.0.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation 'com.google.firebase:firebase-analytics-ktx'
@@ -70,4 +79,10 @@ dependencies {
     //recycle
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.cardview:cardview:1.0.0")
+    //viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }

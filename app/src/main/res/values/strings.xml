@@ -6,5 +6,16 @@
     <string name="welcome_to_elderly_care"><b>Welcome to Elderly Care</b></string>
     <string name="medicine">Medicine</string>
     <string name="appointment">Appointment</string>
+    <string name="time">Time</string>
+    <string name="dose">Dose</string>
+    <string name="medicine_type">Medicine Type</string>
+    <string name="date">Date</string>
+    <string name="appointment_reason">Appoitment Reason</string>
+    <string name="appointment_date">Appointment Date:</string>
+    <string name="appointment_time">Appointment Time:</string>
+    <string name="appointment_reason_tv">Appointment Reason:</string>
+    <string name="hospital_name">Hospital Name:</string>
+    <string name="hospital_name_et">Hospital Name</string>
+    <string name="deletemedimg">deleteMedImg</string>
 
 </resources>

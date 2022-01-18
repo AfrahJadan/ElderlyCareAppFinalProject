@@ -85,8 +85,7 @@
                     android:background="@color/white"
                     android:padding="10dp"
                     android:clickable="true"
-                    android:src="@drawable/ic_baseline_more_time_24"
-                    android:contentDescription="calImage"/>
+                    android:src="@drawable/ic_baseline_more_time_24" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/medTimePick"

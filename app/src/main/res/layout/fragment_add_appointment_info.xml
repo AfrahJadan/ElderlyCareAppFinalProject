@@ -23,14 +23,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="8dp">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/appDatePickBtn"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_baseline_date_range_24"/>
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Add_app_Date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="  pick appointment Date"
-
-                    android:drawableStart="@drawable/ic_baseline_date_range_24"
                     android:inputType="date"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,13 +46,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="8dp">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/appTimePickBtn"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_baseline_more_time_24" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/app_timeEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="  pick appointment Time"
-                    android:drawableStart="@drawable/ic_baseline_more_time_24"
                     android:inputType="time" />
             </com.google.android.material.textfield.TextInputLayout>
 

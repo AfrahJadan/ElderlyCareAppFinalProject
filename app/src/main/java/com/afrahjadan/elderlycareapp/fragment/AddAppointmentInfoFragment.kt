@@ -1,5 +1,7 @@
 package com.afrahjadan.elderlycareapp.fragment
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import com.afrahjadan.elderlycareapp.databinding.FragmentAddAppointmentInfoBindi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 
 class AddAppointmentInfoFragment : Fragment() {
@@ -29,6 +32,43 @@ class AddAppointmentInfoFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAddAppointmentInfoBinding.inflate(inflater, container, false)
+
+        binding.appDatePickBtn.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePicker = DatePickerDialog(
+                requireContext(),
+                DatePickerDialog.OnDateSetListener { view, year, monthofyear, dayOfMonth ->
+                    val months = monthofyear + 1
+                    binding.AddAppDate.setText("$dayOfMonth/$months/$year")
+                },
+                year,
+                month,
+                day
+            )
+            datePicker.datePicker.maxDate = c.timeInMillis
+            datePicker.show()
+        }
+        binding.appTimePickBtn.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val hour = cal.get(Calendar.HOUR_OF_DAY)
+            val min = cal.get(Calendar.MINUTE)
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                    binding.appTimeEt.setText("$hourOfDay" + ":" + "$minute")
+                },
+                hour,
+                min,
+                true
+            )
+            timePickerDialog.show()
+
+        }
+
         binding.SaveToAddBtnApp.setOnClickListener {
 
             val action =
@@ -65,22 +105,12 @@ class AddAppointmentInfoFragment : Fragment() {
                 ).show()
             }
         }
-            return binding.root
+        return binding.root
 
     }
 }
 
 
-//                val appAdd = hashMapOf(
-//                    "appointmentDate" to binding.AddAppDate.text.toString(),
-//                    "appointmentTime" to binding.appTimeEt.text.toString(),
-//                    "appointmentReason" to binding.appResEt.text.toString(),
-//                    "hospitalName" to binding.hospitalName.text.toString(),
-//                    "appUserId" to FirebaseAuth.getInstance().currentUser?.uid.toString()
-//                )
-
-//                appDataBase.collection("Appointment")
-//                    .add(appAdd)
 
 
 

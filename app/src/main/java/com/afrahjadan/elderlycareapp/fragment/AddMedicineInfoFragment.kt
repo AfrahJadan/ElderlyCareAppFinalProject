@@ -1,10 +1,8 @@
 package com.afrahjadan.elderlycareapp.fragment
 
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,11 +15,10 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentAddMedicineInfoBinding
+import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class AddMedicineInfoFragment : Fragment() {
@@ -34,7 +31,6 @@ class AddMedicineInfoFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,8 +57,16 @@ class AddMedicineInfoFragment : Fragment() {
             datePicker.datePicker.maxDate = c.timeInMillis
             datePicker.show()
         }
+     binding.medTimePickBtn.setOnClickListener {
+         val cal = Calendar.getInstance()
+         val hour = cal.get(Calendar.HOUR_OF_DAY)
+         val min = cal.get(Calendar.MINUTE)
+         val timePickerDialog =TimePickerDialog(requireContext(),TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+             binding.medTimePick.setText("$hourOfDay"+":"+"$minute")
+         },hour,min,true)
+         timePickerDialog.show()
 
-
+     }
 
         binding.SaveToAddBtn.setOnClickListener {
             val action =
@@ -99,13 +103,9 @@ class AddMedicineInfoFragment : Fragment() {
 
         }
 
-
-
-
-
-
         return binding.root
     }
+
 
 //    private fun pickDateTime() {
 //        val currentDateTime = Calendar.getInstance()

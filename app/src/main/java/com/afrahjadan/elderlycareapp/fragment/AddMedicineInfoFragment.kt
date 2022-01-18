@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentAddMedicineInfoBinding
@@ -26,7 +29,21 @@ class AddMedicineInfoFragment : Fragment() {
     private lateinit var binding: FragmentAddMedicineInfoBinding
     private val medDataBase = Firebase.firestore
 
+    private val medTypeLiveData = MutableLiveData<String>()
+    private val medDoseLiveData = MutableLiveData<String>()
+    private val isValidLiveData = MediatorLiveData<Boolean>().apply {
+        addSource(medTypeLiveData) { medtype ->
+            val medicineLD = medDoseLiveData.value
+            this.value = medValid(medicineLD!!, medtype)
 
+        }
+        addSource(medDoseLiveData) { medicineLD ->
+            val medtype = medTypeLiveData.value
+            this.value = medValid(medicineLD, medtype!!)
+
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,17 +74,31 @@ class AddMedicineInfoFragment : Fragment() {
             datePicker.datePicker.maxDate = c.timeInMillis
             datePicker.show()
         }
-     binding.medTimePickBtn.setOnClickListener {
-         val cal = Calendar.getInstance()
-         val hour = cal.get(Calendar.HOUR_OF_DAY)
-         val min = cal.get(Calendar.MINUTE)
-         val timePickerDialog =TimePickerDialog(requireContext(),TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-             binding.medTimePick.setText("$hourOfDay"+":"+"$minute")
-         },hour,min,true)
-         timePickerDialog.show()
+        binding.medTimePickBtn.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val hour = cal.get(Calendar.HOUR_OF_DAY)
+            val min = cal.get(Calendar.MINUTE)
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                    binding.medTimePick.setText("$hourOfDay" + ":" + "$minute")
+                },
+                hour,
+                min,
+                true
+            )
+            timePickerDialog.show()
 
-     }
-
+        }
+        binding.layout2.editText?.doOnTextChanged { text, _, _, _ ->
+            medTypeLiveData.value = text?.toString()
+        }
+        binding.tlayot.editText?.doOnTextChanged { text, _, _, _ ->
+            medTypeLiveData.value = text?.toString()
+        }
+        isValidLiveData.observe(viewLifecycleOwner) { isvalid ->
+            binding.SaveToAddBtn.isEnabled = isvalid
+        }
         binding.SaveToAddBtn.setOnClickListener {
             val action =
                 AddMedicineInfoFragmentDirections.actionAddMedicineInfoFragmentToViewMedicineFragment()
@@ -106,33 +137,10 @@ class AddMedicineInfoFragment : Fragment() {
         return binding.root
     }
 
-
-//    private fun pickDateTime() {
-//        val currentDateTime = Calendar.getInstance()
-//        val startYear = currentDateTime.get(Calendar.YEAR)
-//        val startMonth = currentDateTime.get(Calendar.MONTH)
-//        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-//        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-//        val startMinute = currentDateTime.get(Calendar.MINUTE)
-//
-//        DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, day ->
-//            TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-//                val pickedDateTime = Calendar.getInstance()
-//                pickedDateTime.set(year, month, day, hour, minute)
-//
-//            }, startHour, startMinute, false).show()
-//        }, startYear, startMonth, startDay).show()
-//    }
-//        binding.medDatePickBtn.setOnClickListener {
-//            val cal =Calendar.getInstance()
-//            val timeSetListener =TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-//                cal.set(Calendar.HOUR_OF_DAY, hour)
-//                cal.set(Calendar.MINUTE, minute)
-//
-//            binding.medTimePick.setText("dd") = SimpleDateFormat("HH:mm").format(cal.time)
-//            }
-//            TimePickerDialog(requireContext(),timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-//        }
-
+    private fun medValid(medtype: String, medicineLD: String): Boolean {
+        val isValidType = medtype != null && medtype.isNotBlank() && medtype.isNotEmpty()
+        val isValidDose =
+            medicineLD != null && medicineLD.isNotBlank() && medicineLD.isNotEmpty()
+        return isValidDose && isValidType
+    }
 }
-

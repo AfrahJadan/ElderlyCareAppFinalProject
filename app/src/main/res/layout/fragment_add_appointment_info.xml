@@ -28,7 +28,9 @@
                     android:id="@+id/Add_app_Date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appoitment Date"
+                    android:hint="  pick appointment Date"
+
+                    android:drawableStart="@drawable/ic_baseline_date_range_24"
                     android:inputType="date"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +45,8 @@
                     android:id="@+id/app_timeEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appoitment Time"
+                    android:hint="  pick appointment Time"
+                    android:drawableStart="@drawable/ic_baseline_more_time_24"
                     android:inputType="time" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +61,7 @@
                     android:id="@+id/appResEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appoitment Reason"
+                    android:hint="Appointment Reason"
                     android:inputType="text"
                     android:minHeight="100dp" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -7,5 +7,7 @@ data class AppointmentItem(
     var hospitalName: String = "",
     var appUserId: String = "",
     val id: String = ""
-)
+) {
+
+}
 

@@ -47,7 +47,8 @@ class AddAppointmentInfoFragment : Fragment() {
                     add.id
                 )
                 add.set(appAdd)
-                    .addOnSuccessListener {
+                    //change from onSuccesses to onComplete
+                    .addOnCompleteListener {
                         Toast.makeText(
                             context,
                             "Successfully Added",

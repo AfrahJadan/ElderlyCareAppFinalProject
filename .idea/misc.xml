@@ -5,10 +5,14 @@
       <map>
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2703125" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/top_button_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/drawable/white_button_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/activity_home.xml" value="0.128" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/app_item_list.xml" value="0.25" />
+        <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/app_item_list.xml" value="0.2436548223350254" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/fragment_add_appitment_info.xml" value="0.11980749746707194" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/fragment_add_appointment_info.xml" value="0.25" />
         <entry key="..\:/Users/AFRAH/AndroidStudioProjects/ElderlyCareApp/app/src/main/res/layout/fragment_add_medicine_Info.xml" value="0.21195652173913043" />

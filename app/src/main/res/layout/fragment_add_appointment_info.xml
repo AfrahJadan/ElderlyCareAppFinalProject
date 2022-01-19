@@ -23,20 +23,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="8dp">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/appDatePickBtn"
-                    android:background="@color/white"
-                    android:padding="10dp"
-                    android:clickable="true"
-                    android:src="@drawable/ic_baseline_date_range_24"/>
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Add_app_Date"
+                    android:id="@+id/appDatePickBtn"
+                    android:drawableStart="@drawable/ic_baseline_date_range_24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="  pick appointment Date"
+                    android:hint="@string/pick_appointment_date"
                     android:inputType="date"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,21 +39,27 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="8dp">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/appTimePickBtn"
-                    android:background="@color/white"
-                    android:padding="10dp"
-                    android:clickable="true"
-                    android:src="@drawable/ic_baseline_more_time_24" />
-
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/app_timeEt"
+                    android:id="@+id/appTimePickBtn"
+                    android:drawableStart="@drawable/ic_baseline_more_time_24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="  pick appointment Time"
+                    android:hint="@string/pick_appointment_time"
                     android:inputType="time" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hospital_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hospital_name_add"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -74,24 +73,9 @@
                     android:id="@+id/appResEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appointment Reason"
+                    android:hint="@string/appointment_reason_add"
                     android:inputType="text"
                     android:minHeight="100dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/hospital_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Hospital Name"
-                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -99,7 +83,7 @@
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Save"
+                android:hint="@string/save_add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

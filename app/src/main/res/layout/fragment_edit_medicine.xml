@@ -26,7 +26,7 @@
                     android:id="@+id/medTypeEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Type" />
+                    android:hint="@string/medicine_type_edit" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -40,7 +40,7 @@
                     android:id="@+id/doseEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Dose"
+                    android:hint="@string/medicine_dose_edit"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +55,7 @@
                     android:id="@+id/medDateEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Date"
+                    android:hint="@string/medicine_date_edit"
                     android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,14 +70,14 @@
                     android:id="@+id/medTimeEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine Time"
+                    android:hint="@string/medicine_time_edit"
                     android:inputType="time"/>
             </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/SaveToEditBtn"
-                android:hint="Save Changes"
+                android:hint="@string/save_changes_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

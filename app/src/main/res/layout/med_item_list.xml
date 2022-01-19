@@ -30,13 +30,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Medicine Type:"
+                    android:text="@string/medicine_type_item"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/medShow"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -54,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Medicine Dose:"
+                    android:text="@string/medicine_dose_item"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -78,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Medicine Time:"
+                    android:text="@string/medicine_time_item"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -101,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Medicine Date:"
+                    android:text="@string/medicine_date_item"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -131,7 +130,8 @@
                     android:background="@color/white"
                     android:clickable="true"
                     android:padding="10dp"
-                    android:src="@drawable/ic_baseline_edit_24" />
+                    android:src="@drawable/ic_baseline_edit_24"
+                    android:contentDescription="@string/icon_edit_med" />
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +139,8 @@
                     android:padding="10dp"
                     android:clickable="true"
                     android:src="@drawable/ic_baseline_delete_outline_24"
-                    android:background="@color/white"/>
+                    android:background="@color/white"
+                    android:contentDescription="@string/icon_delete_med" />
             </LinearLayout>
 
         </LinearLayout>

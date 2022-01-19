@@ -25,10 +25,12 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
+                    style="@style/RoundedSquare"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="50dp"
+                    android:contentDescription="@string/icon_pro"
                     android:src="@drawable/icone1" />
 
 
@@ -37,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Welcome"
+                    android:text="@string/welcome"
                     android:textColor="@color/black"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -47,13 +49,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Email"
-                    android:textSize="10dp"
+                    android:text="@string/email"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="400dp"
+                android:layout_width="300dp"
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="257dp"
@@ -61,59 +63,64 @@
                 app:cardElevation="10dp">
 
                 <LinearLayout
-                    android:layout_width="400dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:weightSum="4"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="80dp"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        tools:ignore="UselessParent">
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
-                            android:text="Notification"
+                            android:gravity="center"
+                            android:text="@string/notification"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
                         <androidx.constraintlayout.utils.widget.ImageFilterView
+                            android:id="@+id/notifications"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
+                            android:layout_gravity="center"
                             android:padding="8dp"
                             android:src="@drawable/ic_baseline_circle_notifications_24" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text="Language"
-                            android:textColor="@color/black"
-                            android:textSize="20sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="8dp"-->
+<!--                            android:text="Language"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="20sp" />-->
 
-                        <androidx.constraintlayout.utils.widget.ImageFilterView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_baseline_language_24" />
-                    </LinearLayout>
+<!--                        <androidx.constraintlayout.utils.widget.ImageFilterView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:clickable="true"-->
+<!--                            android:padding="8dp"-->
+<!--                            android:src="@drawable/ic_baseline_language_24" />-->
+<!--                    </LinearLayout>-->
 
 
                 </LinearLayout>
@@ -141,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:paddingStart="20dp"
-                android:text="Health Care"
+                android:text="@string/health_care"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
         </androidx.cardview.widget.CardView>
@@ -159,8 +166,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:paddingStart="20dp"
-                android:text="Notes"
-                android:textSize="20sp" />
+                android:text="@string/notes"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
 
             <!--            <LinearLayout-->
             <!--                android:layout_width="match_parent"-->
@@ -225,7 +233,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Log out"
+            android:text="@string/log_out"
             android:textColor="@color/white"
             android:textStyle="bold" />
 

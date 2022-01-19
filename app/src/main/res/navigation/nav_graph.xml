@@ -97,4 +97,9 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <activity
+        android:id="@+id/notificationsActivity"
+        android:name="com.afrahjadan.elderlycareapp.NotificationsActivity"
+        android:label="activity_notifications"
+        tools:layout="@layout/activity_notifications" />
 </navigation>

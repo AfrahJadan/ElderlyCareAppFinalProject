@@ -1,5 +1,7 @@
 package com.afrahjadan.elderlycareapp.data
 
+import java.sql.Timestamp
+
 data class AppointmentItem(
     var appointmentDate: String = "",
     var appointmentTime: String = "",
@@ -7,7 +9,12 @@ data class AppointmentItem(
     var hospitalName: String = "",
     var appUserId: String = "",
     val id: String = ""
-) {
 
-}
+)
+
+//val timestamp: Long=0L
+//{
+//    fun isUpcoming(): Boolean =
+//        System.currentTimeMillis() <= timestamp
+//}
 

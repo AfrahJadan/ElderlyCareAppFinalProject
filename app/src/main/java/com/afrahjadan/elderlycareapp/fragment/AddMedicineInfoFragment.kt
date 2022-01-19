@@ -1,6 +1,7 @@
 package com.afrahjadan.elderlycareapp.fragment
 
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.icu.util.Calendar
@@ -27,27 +28,11 @@ class AddMedicineInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentAddMedicineInfoBinding
     private val medDataBase = Firebase.firestore
-
-    private val medTypeLiveData = MutableLiveData<String>()
-    private val medDoseLiveData = MutableLiveData<String>()
-    private val isValidLiveData = MediatorLiveData<Boolean>().apply {
-        addSource(medTypeLiveData) { medtype ->
-            val medicineLD = medDoseLiveData.value
-            this.value = medValid(medicineLD!!, medtype)
-
-        }
-        addSource(medDoseLiveData) { medicineLD ->
-            val medtype = medTypeLiveData.value
-            this.value = medValid(medicineLD, medtype!!)
-
-        }
-
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,7 +49,7 @@ class AddMedicineInfoFragment : Fragment() {
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { view, year, monthofyear, dayOfMonth ->
                     val months = monthofyear + 1
-                    binding.medDateAdd.setText("$dayOfMonth/$months/$year")
+                    binding.medDatePickBtn.setText("$dayOfMonth/$months/$year")
                 },
                 year,
                 month,
@@ -73,6 +58,8 @@ class AddMedicineInfoFragment : Fragment() {
             datePicker.datePicker.maxDate = c.timeInMillis
             datePicker.show()
         }
+
+
         binding.medTimePickBtn.setOnClickListener {
             val cal = Calendar.getInstance()
             val hour = cal.get(Calendar.HOUR_OF_DAY)
@@ -80,7 +67,7 @@ class AddMedicineInfoFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 requireContext(),
                 TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                    binding.medTimePick.setText("$hourOfDay" + ":" + "$minute")
+                    binding.medTimePickBtn.setText("$hourOfDay" + ":" + "$minute")
                 },
                 hour,
                 min,
@@ -89,29 +76,19 @@ class AddMedicineInfoFragment : Fragment() {
             timePickerDialog.show()
 
         }
-        binding.layout2.editText?.doOnTextChanged { text, _, _, _ ->
-            medTypeLiveData.value = text?.toString()
-        }
-        binding.tlayot.editText?.doOnTextChanged { text, _, _, _ ->
-            medTypeLiveData.value = text?.toString()
-        }
-        isValidLiveData.observe(viewLifecycleOwner) { isvalid ->
-            binding.SaveToAddBtn.isEnabled = isvalid
-        }
         binding.SaveToAddBtn.setOnClickListener {
             val action =
                 AddMedicineInfoFragmentDirections.actionAddMedicineInfoFragmentToViewMedicineFragment()
             findNavController().navigate(action)
 
-            if (binding.medTypeEt.text!!.isNotEmpty() && binding.medTimePick.text!!.isNotEmpty() && binding.doseEt.text!!.isNotEmpty() && binding.medDateAdd.text!!.isNotEmpty()) {
-
-
+            if (binding.medTypeEt.text!!.isNotEmpty() && binding.medTimePickBtn.text!!.isNotEmpty()
+                && binding.doseEt.text!!.isNotEmpty() && binding.medDatePickBtn.text!!.isNotEmpty()
+            ) {
                 val add = medDataBase.collection("Medicines").document()
-
                 val medAdd = MedicineItem(
                     binding.medTypeEt.text.toString(), binding.doseEt.text.toString().toInt(),
-                    binding.medTimePick.text.toString(),
-                    binding.medDateAdd.text.toString(),
+                    binding.medTimePickBtn.text.toString(),
+                    binding.medDatePickBtn.text.toString(),
                     FirebaseAuth.getInstance().currentUser?.uid.toString(),
                     add.id
                 )
@@ -130,16 +107,7 @@ class AddMedicineInfoFragment : Fragment() {
             } else {
                 Toast.makeText(context, "Please Enter Medicine First", Toast.LENGTH_SHORT).show()
             }
-
         }
-
         return binding.root
-    }
-
-    private fun medValid(medtype: String, medicineLD: String): Boolean {
-        val isValidType = medtype != null && medtype.isNotBlank() && medtype.isNotEmpty()
-        val isValidDose =
-            medicineLD != null && medicineLD.isNotBlank() && medicineLD.isNotEmpty()
-        return isValidDose && isValidType
     }
 }

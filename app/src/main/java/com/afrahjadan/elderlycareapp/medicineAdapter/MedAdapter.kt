@@ -12,6 +12,8 @@ import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.fragment.ViewMedicineFragmentDirections
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MedAdapter(private val medList: MutableList<MedicineItem?>) :
     RecyclerView.Adapter<MedAdapter.MedViewHolder>() {
@@ -41,6 +43,9 @@ class MedAdapter(private val medList: MutableList<MedicineItem?>) :
         holder.dosMed.text = medItem?.dose.toString()
         holder.medTime.text = medItem?.medTime.toString()
         holder.medDate.text = medItem?.medDate.toString()
+
+
+
         holder.medEdit.setOnClickListener {
 
             val action =
@@ -62,4 +67,5 @@ class MedAdapter(private val medList: MutableList<MedicineItem?>) :
     private fun deleteMad() {
         db.collection("Medicines").document(id).delete()
     }
+
 }

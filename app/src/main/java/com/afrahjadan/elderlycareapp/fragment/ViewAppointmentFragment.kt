@@ -16,6 +16,9 @@ import com.afrahjadan.elderlycareapp.databinding.FragmentViewAndAddAppointmentBi
 import com.afrahjadan.elderlycareapp.medicineAdapter.MedAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import com.google.firebase.firestore.EventListener
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ViewAppointmentFragment : Fragment() {
@@ -66,6 +69,7 @@ class ViewAppointmentFragment : Fragment() {
             }
             })
         }
+
     }
 
 

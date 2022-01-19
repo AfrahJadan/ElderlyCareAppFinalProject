@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.EditAppointmentFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,7 +28,7 @@
                     android:id="@+id/edit_app_Date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appointment Date"
+                    android:hint="@string/appointment_date_edit"
                     android:inputType="date"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,24 +43,8 @@
                     android:id="@+id/app_timeEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Appointment Time"
+                    android:hint="@string/appointment_time_edit"
                     android:inputType="time" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/appResEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Appointment Reason"
-                    android:inputType="text"
-                    android:minHeight="100dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -75,16 +58,30 @@
                     android:id="@+id/hospital_name_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Hospital Name"
+                    android:hint="@string/hospital_name_edit"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="8dp">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/appResEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/appointment_reason_edit"
+                    android:inputType="text"
+                    android:minHeight="100dp" />
+            </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/SaveEditBtn_app"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Save Changes"
+                android:hint="@string/save_changes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

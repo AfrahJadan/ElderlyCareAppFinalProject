@@ -49,7 +49,7 @@ class AppAdapter(private val appList: MutableList<AppointmentItem?>) :
 //isPassed(appItem?.appointmentDate!!).toString()
         if (isPassed(appItem?.appointmentDate!!)) {
 
-            holder.cardMed.setBackgroundColor(R.color.baby_blue)
+            holder.cardMed.setBackgroundColor(R.color.baby_blue)   
         }
 //else{
 //    holder.cardMed.setBackgroundColor(R.color.purple_200)

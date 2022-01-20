@@ -30,7 +30,11 @@
         android:id="@+id/profileFragment"
         android:name="com.afrahjadan.elderlycareapp.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addMedicineInfoFragment"
         android:name="com.afrahjadan.elderlycareapp.fragment.AddMedicineInfoFragment"
@@ -102,4 +106,9 @@
         android:name="com.afrahjadan.elderlycareapp.NotificationsActivity"
         android:label="activity_notifications"
         tools:layout="@layout/activity_notifications" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.afrahjadan.elderlycareapp.fragment.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

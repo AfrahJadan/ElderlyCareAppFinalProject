@@ -11,23 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afrahjadan.elderlycareapp.appoitmentAdapter.AppAdapter
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
-import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentViewAndAddAppointmentBinding
-import com.afrahjadan.elderlycareapp.medicineAdapter.MedAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
-import com.google.firebase.firestore.EventListener
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class ViewAppointmentFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<AppAdapter.AppViewHolder>? = null
     val db = FirebaseFirestore.getInstance()
-    private var appInfo = mutableListOf<AppointmentItem?>()
+
+    private var appInfo = mutableListOf<AppointmentItem>()
+
     private lateinit var binding: FragmentViewAndAddAppointmentBinding
 
+    val auth = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +48,7 @@ class ViewAppointmentFragment : Fragment() {
         return binding.root
     }
 
+
     private fun eventChangeListener() {
         db.collection("Appointment").addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -63,12 +62,12 @@ class ViewAppointmentFragment : Fragment() {
                     }
                 }
                 val adapter =
-                    AppAdapter(appInfo.filter { it?.appUserId == FirebaseAuth.getInstance().currentUser?.uid }
-                        .toMutableList())
+                    AppAdapter(appInfo.filter { it?.appUserId == FirebaseAuth.getInstance().currentUser?.uid }!!.toMutableList())
                 binding.recycleApp.adapter =adapter
             }
             })
         }
+
 
     }
 

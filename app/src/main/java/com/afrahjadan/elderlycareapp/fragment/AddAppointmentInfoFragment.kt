@@ -26,7 +26,7 @@ class AddAppointmentInfoFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
+val auth = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,7 +62,7 @@ binding.appDatePickBtn.setOnClickListener {
             if (binding.appDatePickBtn.text!!.isNotEmpty() && binding.appTimePickBtn.text!!.isNotEmpty()
                 && binding.appResEt.text!!.isNotEmpty() && binding.hospitalName.text!!.isNotEmpty())
                 {
-                val add = appDataBase.collection("Appointment").document()
+                val add = appDataBase.collection("Appointment").document(auth!!)
                 val appAdd = AppointmentItem(
                     binding.appDatePickBtn.text.toString(),
                     binding.appTimePickBtn.text.toString(),

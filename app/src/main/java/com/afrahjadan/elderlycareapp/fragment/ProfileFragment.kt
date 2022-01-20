@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.afrahjadan.elderlycareapp.MainActivity
 import com.afrahjadan.elderlycareapp.NotificationsActivity
 import com.afrahjadan.elderlycareapp.R
@@ -23,6 +24,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,6 +44,11 @@ class ProfileFragment : Fragment() {
         }
 
         SimpleDateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+
+        binding.editProfile.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
+            findNavController().navigate(action)
+        }
         return binding.root
     }
 

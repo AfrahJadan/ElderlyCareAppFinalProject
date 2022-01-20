@@ -1,7 +1,5 @@
 package com.afrahjadan.elderlycareapp.data
 
-import java.sql.Timestamp
-
 data class AppointmentItem(
     var appointmentDate: String = "",
     var appointmentTime: String = "",
@@ -11,6 +9,10 @@ data class AppointmentItem(
     val id: String = ""
 
 )
+
+//data class AppointmentList(
+//    val Appointments: MutableList<AppointmentItem?> = mutableListOf()
+//)
 
 //val timestamp: Long=0L
 //{

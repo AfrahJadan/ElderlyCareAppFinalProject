@@ -54,15 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="8dp">
-<!--                <ImageButton-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/medDatePickBtn"-->
-<!--                    android:background="@color/white"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:clickable="true"-->
-<!--                    android:src="@drawable/ic_baseline_date_range_24"-->
-<!--                    android:contentDescription="@string/icon_med_date" />-->
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/medDatePickBtn"
                     android:layout_width="match_parent"

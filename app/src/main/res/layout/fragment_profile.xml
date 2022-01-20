@@ -65,9 +65,9 @@
                     android:id="@+id/edit_Profile"
                     android:layout_width="45dp"
                     android:layout_height="53dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="20sp"
                     android:layout_marginStart="20sp"
+                    android:layout_marginTop="20sp"
+                    android:background="@color/white"
                     android:padding="20dp"
                     android:src="@drawable/ic_baseline_edit_24" />
 
@@ -101,41 +101,8 @@
                         android:src="@drawable/ic_baseline_circle_notifications_24" />
                 </LinearLayout>
 
-                <!--                    <LinearLayout-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="match_parent"-->
-                <!--                        android:layout_weight="1"-->
-                <!--                        android:gravity="center"-->
-                <!--                        android:orientation="vertical">-->
-
-                <!--                        <TextView-->
-                <!--                            android:layout_width="wrap_content"-->
-                <!--                            android:layout_height="wrap_content"-->
-                <!--                            android:padding="8dp"-->
-                <!--                            android:text="Language"-->
-                <!--                            android:textColor="@color/black"-->
-                <!--                            android:textSize="20sp" />-->
-
-                <!--                        <androidx.constraintlayout.utils.widget.ImageFilterView-->
-                <!--                            android:layout_width="wrap_content"-->
-                <!--                            android:layout_height="wrap_content"-->
-                <!--                            android:clickable="true"-->
-                <!--                            android:padding="8dp"-->
-                <!--                            android:src="@drawable/ic_baseline_language_24" />-->
-                <!--                    </LinearLayout>-->
-
-
-                <!--                </LinearLayout>-->
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
-
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="400dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:orientation="vertical"-->
-        <!--            android:paddingTop="40dp">-->
 
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"
@@ -149,8 +116,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:paddingStart="20dp"
                 android:autoSizeTextType="uniform"
+                android:paddingStart="20dp"
                 android:text="Diabetes, blood pressure, cholesterol, heart disease"
 
                 android:textSize="20sp"
@@ -174,62 +141,8 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:orientation="horizontal"-->
-            <!--                android:paddingLeft="30dp">-->
-
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/emailTv"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="center_vertical"-->
-            <!--                    android:paddingLeft="20dp"-->
-            <!--                    android:text="Email"-->
-            <!--                    android:textStyle="bold" />-->
-            <!--            </LinearLayout>-->
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="25dp"-->
-            <!--                android:orientation="horizontal"-->
-            <!--                android:paddingLeft="30dp">-->
-
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="center_vertical"-->
-            <!--                    android:paddingLeft="20dp"-->
-            <!--                    android:text="Age"-->
-            <!--                    android:textStyle="bold" />-->
-            <!--            </LinearLayout>-->
-
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="25dp"-->
-            <!--                android:orientation="horizontal"-->
-            <!--                android:paddingLeft="30dp">-->
-
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="center_vertical"-->
-            <!--                    android:paddingLeft="20dp"-->
-            <!--                    android:text="Show All Comments"-->
-            <!--                    android:textStyle="bold" />-->
-            <!--            </LinearLayout>-->
 
         </androidx.cardview.widget.CardView>
-
-        <!--        </LinearLayout>-->
-
 
         <Button
             android:id="@+id/logoutBtn"
@@ -245,128 +158,3 @@
 </ScrollView>
 
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView"-->
-    <!--        style="@style/TextAppearance.MaterialComponents.Caption"-->
-    <!--        android:layout_width="155dp"-->
-    <!--        android:layout_height="49dp"-->
-    <!--        android:layout_marginTop="64dp"-->
-    <!--        android:text="You're LoggedIn as"-->
-    <!--        android:textColor="#5F685A"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.101"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--        <Button-->
-    <!--        android:id="@+id/logoutBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="56dp"-->
-    <!--        android:text="Logout"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.905"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/button"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginEnd="28dp"-->
-    <!--        android:text="Save"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.923" />-->
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/UserEt"-->
-    <!--        android:minWidth="300dp"-->
-    <!--        android:layout_width="310dp"-->
-    <!--        android:layout_height="94dp"-->
-    <!--        android:layout_marginStart="24dp"-->
-    <!--        android:layout_marginEnd="24dp"-->
-    <!--        android:drawableStart="@drawable/ic_baseline_health_and_safety_24"-->
-    <!--        android:hint="Health Status"-->
-    <!--        android:minHeight="500dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
-    <!--    <androidx.cardview.widget.CardView-->
-    <!--        android:layout_width="370dp"-->
-    <!--        android:layout_height="298dp"-->
-    <!--        android:layout_marginStart="24dp"-->
-    <!--        android:layout_marginEnd="24dp"-->
-    <!--        app:cardCornerRadius="24dp"-->
-    <!--        app:contentPadding="30dp"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/button"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/emailTv">-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:orientation="vertical">-->
-
-    <!--            <com.google.android.material.textfield.TextInputLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:isScrollContainer="false"-->
-    <!--                android:paddingStart="6dp"-->
-    <!--                android:paddingEnd="6dp">-->
-
-    <!--                <com.google.android.material.textfield.TextInputEditText-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="238dp"-->
-    <!--                    android:layout_marginTop="6dp"-->
-    <!--                    android:layout_marginBottom="24dp"-->
-    <!--                    android:background="#E3E7B3"-->
-    <!--                    android:drawableStart="@drawable/ic_baseline_health_and_safety_24"-->
-    <!--                    android:drawablePadding="10dp"-->
-    <!--                    android:hint="Health Status"-->
-    <!--                    android:textColor="#AA512F" />-->
-    <!--            </com.google.android.material.textfield.TextInputLayout>-->
-    <!--        </LinearLayout>-->
-    <!--    </androidx.cardview.widget.CardView>-->
-
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/emailTv"-->
-    <!--        style="@style/TextAppearance.MaterialComponents.Body1"-->
-    <!--        android:layout_width="240dp"-->
-    <!--        android:layout_height="54dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:text="Email"-->
-    <!--        android:textColor="#9BC1AF"-->
-    <!--        android:textSize="18sp"-->
-    <!--        app:layout_constraintHorizontal_bias="0.516"-->
-    <!--        tools:ignore="MissingConstraints" />-->
-    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--                    <LinearLayout-->
-    <!--                        android:layout_width="0dp"-->
-    <!--                        android:layout_height="match_parent"-->
-    <!--                        android:layout_weight="1"-->
-    <!--                        android:gravity="center"-->
-    <!--                        android:orientation="vertical">-->
-
-    <!--                        <TextView-->
-    <!--                            android:layout_width="wrap_content"-->
-    <!--                            android:layout_height="wrap_content"-->
-    <!--                            android:text="Mode"-->
-    <!--                            android:textColor="@color/black"-->
-    <!--                            android:textSize="20sp" />-->
-
-    <!--                        <androidx.constraintlayout.utils.widget.ImageFilterView-->
-    <!--                            android:layout_width="wrap_content"-->
-    <!--                            android:layout_height="wrap_content"-->
-    <!--                            android:padding="8dp"-->
-    <!--                            android:clickable="true"-->
-    <!--                            android:src="@drawable/ic_baseline_light_mode_24"-->
-    <!--                            />-->
-    <!--                    </LinearLayout>-->

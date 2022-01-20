@@ -14,6 +14,7 @@ import com.afrahjadan.elderlycareapp.MainActivity
 import com.afrahjadan.elderlycareapp.NotificationsActivity
 import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.databinding.FragmentProfileBinding
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -49,6 +50,7 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
             findNavController().navigate(action)
         }
+        getProfileImage()
         return binding.root
     }
 
@@ -60,17 +62,13 @@ class ProfileFragment : Fragment() {
                 val intent = Intent(it, MainActivity::class.java)
                 it.startActivity(intent)
             }
-//            val intent =Intent(activity,MainActivity::class.java)
-//            activity?.startActivity(intent)
-            // startActivity(Intent(this, MainActivity::class.java))
-            // finish()
+
         } else {
             val email = firebaseUser.email
             binding.emailTv.text = email
         }
 
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -81,12 +79,19 @@ class ProfileFragment : Fragment() {
             firebaseAuth.signOut()
             checkUser()
         }
-
-
     }
 
     override fun onStart() {
         super.onStart()
+    }
+
+    fun getProfileImage(){
+        val image = FirebaseAuth.getInstance().currentUser?.photoUrl
+        Glide.with(this)
+            .load(image)
+            .fitCenter()
+            .placeholder(R.drawable.settings_icon)
+            .into(binding.profileImage)
     }
 
 }

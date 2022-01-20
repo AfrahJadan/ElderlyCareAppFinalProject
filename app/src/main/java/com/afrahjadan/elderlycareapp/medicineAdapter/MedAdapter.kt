@@ -68,4 +68,5 @@ class MedAdapter(private val medList: MutableList<MedicineItem?>) :
         db.collection("Medicines").document(id).delete()
     }
 
+
 }

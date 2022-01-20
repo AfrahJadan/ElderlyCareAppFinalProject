@@ -127,7 +127,7 @@
                     android:id="@+id/editMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/baby_white"
                     android:clickable="true"
                     android:padding="10dp"
                     android:src="@drawable/ic_baseline_edit_24"

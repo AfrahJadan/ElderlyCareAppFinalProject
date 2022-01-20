@@ -76,9 +76,9 @@ class AppAdapter(private val appList: MutableList<AppointmentItem?>) :
 
     }
 
-    private fun isPassed(medDate: String): Boolean {
-        val dateMedPass = SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(medDate)
-        return dateMedPass.before(Date())
+    private fun isPassed(appDate: String): Boolean {
+        val dateAppPass = SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(appDate)
+        return dateAppPass.before(Date())
     }
 }
 

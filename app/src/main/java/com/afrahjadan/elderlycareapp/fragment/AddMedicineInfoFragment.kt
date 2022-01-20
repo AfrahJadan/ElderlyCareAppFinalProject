@@ -19,9 +19,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentAddMedicineInfoBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AddMedicineInfoFragment : Fragment() {
@@ -39,26 +42,8 @@ class AddMedicineInfoFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAddMedicineInfoBinding.inflate(layoutInflater)
-        binding.medDatePickBtn.setOnClickListener {
-            val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
 
-            val datePicker = DatePickerDialog(
-                requireContext(),
-                DatePickerDialog.OnDateSetListener { view, year, monthofyear, dayOfMonth ->
-                    val months = monthofyear + 1
-                    binding.medDatePickBtn.setText("$dayOfMonth/$months/$year")
-                },
-                year,
-                month,
-                day
-            )
-            datePicker.datePicker.maxDate = c.timeInMillis
-            datePicker.show()
-        }
-
+        binding.medDatePickBtn.setOnClickListener { dateDialog()}
 
         binding.medTimePickBtn.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -109,5 +94,21 @@ class AddMedicineInfoFragment : Fragment() {
             }
         }
         return binding.root
+    }
+    fun medFormatDate(medDate:Long){
+        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val selectDate = formatter.format(medDate).toString()
+        binding.medDatePickBtn.setText(selectDate)
+    }
+    fun dateDialog() {
+        val builder = MaterialDatePicker.Builder.datePicker()
+        val picker = builder.build()
+        picker.show(requireFragmentManager(), picker.toString())
+
+        picker.addOnNegativeButtonClickListener {
+        }
+        picker.addOnPositiveButtonClickListener {
+            medFormatDate(it)
+        }
     }
 }

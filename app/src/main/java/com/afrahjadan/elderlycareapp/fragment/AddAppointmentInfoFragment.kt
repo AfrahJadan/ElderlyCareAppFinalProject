@@ -1,6 +1,5 @@
 package com.afrahjadan.elderlycareapp.fragment
 
-import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,7 +19,7 @@ import java.util.*
 
 
 class AddAppointmentInfoFragment : Fragment() {
-lateinit var dateMedForm:String
+
     private lateinit var binding: FragmentAddAppointmentInfoBinding
     private val appDataBase = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,31 +37,6 @@ lateinit var dateMedForm:String
 binding.appDatePickBtn.setOnClickListener {
     dateDialog()
 }
-//        binding.appDatePickBtn.setOnClickListener {
-//            val c = Calendar.getInstance()
-//            val year = c.get(Calendar.YEAR)
-//            val month = c.get(Calendar.MONTH)
-//            val day = c.get(Calendar.DAY_OF_MONTH)
-//
-//            val datePicker = DatePickerDialog(
-//                requireContext(),
-//                DatePickerDialog.OnDateSetListener {
-//
-//                        view, year, monthofyear, dayOfMonth ->
-//                    val months = monthofyear + 1
-//
-//                    binding.AddAppDate.setText("$dayOfMonth/$months/$year")
-//                }
-//                ,
-//                year,
-//                month,
-//                day
-//            )
-//            datePicker.datePicker.maxDate = c.timeInMillis
-//            datePicker.show()
-//
-//        }
-
 
         binding.appTimePickBtn.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -120,9 +94,9 @@ binding.appDatePickBtn.setOnClickListener {
         return binding.root
 
     }
-    fun medFormatDate(medDate:Long){
+    fun appFormatDate(appDate:Long){
         val formatter =SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val selectDate = formatter.format(medDate).toString()
+        val selectDate = formatter.format(appDate).toString()
         binding.appDatePickBtn.setText(selectDate)
     }
     fun dateDialog() {
@@ -133,10 +107,8 @@ binding.appDatePickBtn.setOnClickListener {
         picker.addOnNegativeButtonClickListener {
         }
         picker.addOnPositiveButtonClickListener {
-            medFormatDate(it)
+            appFormatDate(it)
         }
-    }
-    fun medicineIsPassed(){
     }
 }
 

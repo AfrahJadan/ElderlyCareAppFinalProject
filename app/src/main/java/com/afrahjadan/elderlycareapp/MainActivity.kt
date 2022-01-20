@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         checkUser()
 
         binding.googleSignInBtn.setOnClickListener {
-            Log.d(TAG, "onCreate:begin Google SignIn")
+//            Log.d(TAG, "onCreate:begin Google SignIn")
             val intent = googleSignInClient.signInIntent
             packageManager.getLaunchIntentForPackage("com.android.chrome")
             startActivityForResult(intent, RC_SIGN_IN)
@@ -58,41 +58,41 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            Log.d(TAG, "onActivityResult: Google SignIn intent result")
+//            Log.d(TAG, "onActivityResult: Google SignIn intent result")
             val accountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = accountTask.getResult(ApiException::class.java)
                 firebaseAuthWithGoogleAccount(account)
             } catch (e: Exception) {
-                Log.d(TAG, "onActivityResult:${e.message}")
+//                Log.d(TAG, "onActivityResult:${e.message}")
             }
         }
     }
 
     private fun firebaseAuthWithGoogleAccount(account: GoogleSignInAccount?) {
-        Log.d(TAG, "firebaseAuthWithGoogleAccount:begin firebase auth with google account")
+//        Log.d(TAG, "firebaseAuthWithGoogleAccount:begin firebase auth with google account")
 
         val credential = GoogleAuthProvider.getCredential(account!!.idToken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener { authResult ->
-                Log.d(TAG, "firebaseAuthWithGoogleAccount: LoggedIn")
+//                Log.d(TAG, "firebaseAuthWithGoogleAccount: LoggedIn")
                 val firebaseUser = firebaseAuth.currentUser
 
                 val uid = firebaseUser!!.uid
                 val email = firebaseUser.email
 
-                Log.d(TAG, "firebaseAuthWithGoogleAccount: Uid: $uid")
-                Log.d(TAG, "firebaseAuthWithGoogleAccount: Uid: $email")
+//                Log.d(TAG, "firebaseAuthWithGoogleAccount: Uid: $uid")
+//                Log.d(TAG, "firebaseAuthWithGoogleAccount: Uid: $email")
 
                 if (authResult.additionalUserInfo!!.isNewUser) {
-                    Log.d(TAG, "firebaseAuthWithGoogleAccount: Account created... \n$email")
+//                    Log.d(TAG, "firebaseAuthWithGoogleAccount: Account created... \n$email")
                     Toast.makeText(
                         this@MainActivity,
                         "Account created... \n$email",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    Log.d(TAG, "firebaseAuthWithGoogleAccount:Existing user... \n$email")
+//                    Log.d(TAG, "firebaseAuthWithGoogleAccount:Existing user... \n$email")
                     Toast.makeText(this@MainActivity, "LoggedIn... \n$email", Toast.LENGTH_SHORT)
                         .show()
                 }
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             .addOnFailureListener { e ->
-                Log.d(TAG, "firebaseAuthWithGoogleAccount: Loggin Failed due to ${e.message}")
+//                Log.d(TAG, "firebaseAuthWithGoogleAccount: Loggin Failed due to ${e.message}")
                 Toast.makeText(
                     this@MainActivity,
                     "Loggin Failed due to ${e.message}",

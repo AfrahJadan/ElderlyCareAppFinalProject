@@ -62,5 +62,8 @@
     <string name="icon_delete_med">icon_delete_med</string>
     <string name="home">Home</string>
     <string name="healthcare">HealthCare</string>
+    <string name="health_situations">Health Situations</string>
+    <string name="notes_show">Notes</string>
+    <string name="save_change_profile">Save Change</string>
 
 </resources>

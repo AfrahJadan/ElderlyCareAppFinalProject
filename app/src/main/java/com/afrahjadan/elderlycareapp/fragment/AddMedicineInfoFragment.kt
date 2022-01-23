@@ -31,11 +31,11 @@ class AddMedicineInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentAddMedicineInfoBinding
     private val medDataBase = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -95,12 +95,12 @@ class AddMedicineInfoFragment : Fragment() {
         }
         return binding.root
     }
-    fun medFormatDate(medDate:Long){
+    private fun medFormatDate(medDate:Long){
         val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val selectDate = formatter.format(medDate).toString()
         binding.medDatePickBtn.setText(selectDate)
     }
-    fun dateDialog() {
+    private fun dateDialog() {
         val builder = MaterialDatePicker.Builder.datePicker()
         val picker = builder.build()
         picker.show(requireFragmentManager(), picker.toString())

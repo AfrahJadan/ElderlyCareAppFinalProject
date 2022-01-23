@@ -63,4 +63,7 @@
     <string name="icon_delete_med">أيقونة مسح الدواء</string>
     <string name="home">الرئيسية</string>
     <string name="healthcare">الرعاية الصحية</string>
+    <string name="health_situations">الحالة الصحية</string>
+    <string name="notes_show">ملاحظات</string>
+    <string name="save_change_profile">حفظ التغييرات</string>
 </resources>

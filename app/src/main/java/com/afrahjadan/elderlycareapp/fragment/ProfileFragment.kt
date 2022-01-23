@@ -4,6 +4,7 @@ import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,12 @@ import androidx.navigation.fragment.findNavController
 import com.afrahjadan.elderlycareapp.MainActivity
 import com.afrahjadan.elderlycareapp.NotificationsActivity
 import com.afrahjadan.elderlycareapp.R
+import com.afrahjadan.elderlycareapp.data.User
 import com.afrahjadan.elderlycareapp.databinding.FragmentProfileBinding
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
@@ -76,13 +80,23 @@ class ProfileFragment : Fragment() {
             firebaseAuth.signOut()
             checkUser()
         }
+        val db = Firebase.firestore
+        val profileUser = db.collection("User").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).addSnapshotListener { value, error ->
+            if(error != null){
+                Log.d("Tag","error")
+            }
+            if(value?.data != null){
+               val profUser = value.toObject(User::class.java)
+                binding.healthCare.text = profUser?.healthSituation
+                binding.Notes.text = profUser?.notes
+
+            }
+
+        }
+        profileUser
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
-    fun getProfileImage(){
+   private fun getProfileImage(){
         val image = FirebaseAuth.getInstance().currentUser?.photoUrl
         Glide.with(this)
             .load(image)

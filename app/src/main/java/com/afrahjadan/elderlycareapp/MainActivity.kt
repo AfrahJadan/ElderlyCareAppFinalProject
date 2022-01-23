@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.afrahjadan.elderlycareapp.data.AppointmentItem
 import com.afrahjadan.elderlycareapp.databinding.ActivityMainBinding
+import com.afrahjadan.elderlycareapp.util.APPOINTMENT
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,6 +15,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -77,7 +82,13 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { authResult ->
 //                Log.d(TAG, "firebaseAuthWithGoogleAccount: LoggedIn")
                 val firebaseUser = firebaseAuth.currentUser
+                val appDataBase = Firebase.firestore
 
+                val add = appDataBase.collection("Appointment").document("${firebaseAuth.currentUser?.uid}")
+
+                add.set(
+                    mapOf(APPOINTMENT to listOf<AppointmentItem>() ), SetOptions.merge()
+                )
                 val uid = firebaseUser!!.uid
                 val email = firebaseUser.email
 
@@ -86,6 +97,15 @@ class MainActivity : AppCompatActivity() {
 
                 if (authResult.additionalUserInfo!!.isNewUser) {
 //                    Log.d(TAG, "firebaseAuthWithGoogleAccount: Account created... \n$email")
+                     val appDataBase = Firebase.firestore
+
+                    val add = appDataBase.collection("Appointment").document("${firebaseAuth.currentUser?.uid}")
+
+    add.set(
+        mapOf(APPOINTMENT to listOf<AppointmentItem>() ), SetOptions.merge()
+    )
+
+
                     Toast.makeText(
                         this@MainActivity,
                         "Account created... \n$email",

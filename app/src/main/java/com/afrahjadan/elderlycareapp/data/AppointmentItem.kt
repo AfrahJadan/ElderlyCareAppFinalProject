@@ -6,13 +6,11 @@ data class AppointmentItem(
     var appointmentReason: String = "",
     var hospitalName: String = "",
     var appUserId: String = "",
-    val id: String = ""
-
 )
 
-//data class AppointmentList(
-//    val Appointments: MutableList<AppointmentItem?> = mutableListOf()
-//)
+data class AppointmentList(
+    val appointment: List<AppointmentItem> = listOf()
+)
 
 //val timestamp: Long=0L
 //{

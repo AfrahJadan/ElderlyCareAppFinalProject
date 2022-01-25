@@ -1,7 +1,6 @@
 package com.afrahjadan.elderlycareapp.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.afrahjadan.elderlycareapp.appoitmentAdapter.AppAdapter
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentViewAndAddAppointmentBinding
@@ -58,7 +56,7 @@ class ViewAppointmentFragment : Fragment() {
         lifecycleScope.launch {
 
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.getTheapointments()
+                viewModel.getTheAppointments()
                 getAppData()
             }
         }
@@ -70,9 +68,9 @@ class ViewAppointmentFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                val list = viewModel.getTheapointments()
-                list.collect { apointList ->
-                    apointList.let {
+                val list = viewModel.getTheAppointments()
+                list.collect { appointmentList ->
+                    appointmentList.let {
                         adapter.submitList(it)
                     }
 
@@ -81,8 +79,6 @@ class ViewAppointmentFragment : Fragment() {
             }
         }
     }
-
-
 }
 
 

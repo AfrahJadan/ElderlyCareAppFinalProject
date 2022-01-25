@@ -1,69 +1,71 @@
 package com.afrahjadan.elderlycareapp.appoitmentAdapter
 
-import android.annotation.SuppressLint
-import android.content.ClipData
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
 import com.afrahjadan.elderlycareapp.databinding.AppItemListBinding
 import com.afrahjadan.elderlycareapp.fragment.ViewAppointmentFragmentDirections
 
 
-class AppAdapter: ListAdapter<AppointmentItem, AppAdapter.ItemViewHolder>(ItemViewHolder) {
+class AppAdapter : ListAdapter<AppointmentItem, AppAdapter.ItemViewHolder>(ItemViewHolder.DiffCallback) {
 
-class ItemViewHolder(var binding:AppItemListBinding):RecyclerView.ViewHolder(binding.root){
-    fun bind(itemApp:AppointmentItem){
+    class ItemViewHolder(var binding: AppItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(itemApp: AppointmentItem) {
 
-        binding.dateAppTv.text =itemApp.appointmentDate
-        binding.timeAppTv.text =itemApp.appointmentTime
-        binding.appResTv.text = itemApp.appointmentReason
-        binding.hosNameTv.text =itemApp.hospitalName
-    }
-    companion object DiffCallback : DiffUtil.ItemCallback<AppointmentItem>() {
-        override fun areItemsTheSame(oldItem: AppointmentItem, newItem: AppointmentItem): Boolean {
-            return oldItem.appUserId == newItem.appUserId
+            binding.dateAppTv.text = itemApp.appointmentDate
+            binding.timeAppTv.text = itemApp.appointmentTime
+            binding.appResTv.text = itemApp.appointmentReason
+            binding.hosNameTv.text = itemApp.hospitalName
         }
-        override fun areContentsTheSame(oldItem: AppointmentItem, newItem: AppointmentItem): Boolean {
-            return oldItem.appUserId == newItem.appUserId
+
+        companion object DiffCallback : DiffUtil.ItemCallback<AppointmentItem>() {
+            override fun areItemsTheSame(
+                oldItem: AppointmentItem,
+                newItem: AppointmentItem
+            ): Boolean {
+                return oldItem.appUserId == newItem.appUserId
+            }
+
+            override fun areContentsTheSame(
+                oldItem: AppointmentItem,
+                newItem: AppointmentItem
+            ): Boolean {
+                return oldItem.appUserId == newItem.appUserId
+            }
         }
+
+
     }
-
-
-}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder(AppItemListBinding.inflate
-            (LayoutInflater.from(parent.context),parent,false)
+        return ItemViewHolder(
+            AppItemListBinding.inflate
+                (LayoutInflater.from(parent.context), parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val appointmetList = getItem(position)
+        val appointmentList = getItem(position)
         holder.binding.editApp.setOnClickListener {
 
             val action =
                 ViewAppointmentFragmentDirections.actionViewAppointmentFragmentToEditAppointmentFragment(
-                    appointmetList.appUserId
+                    appointmentList.appUserId
                 )
 
             holder.itemView.findNavController().navigate(action)
 
         }
-        holder.bind(appointmetList)
+        holder.bind(appointmentList)
     }
 
 //class AppAdapter(private val appList: MutableList<AppointmentItem?>) :
 //    RecyclerView.Adapter<AppAdapter.AppViewHolder>() {
-//    private lateinit var id: String
+
 //    private val db = FirebaseFirestore.getInstance()
 //
 //    class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

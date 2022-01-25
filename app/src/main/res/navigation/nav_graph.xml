@@ -76,6 +76,12 @@
         <action
             android:id="@+id/action_viewMedicineFragment_to_editMedicineFragment"
             app:destination="@id/editMedicineFragment" />
+        <argument
+            android:name="dose"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewMedicineFragment_self"
+            app:destination="@id/viewMedicineFragment" />
     </fragment>
     <fragment
         android:id="@+id/editMedicineFragment"

@@ -37,6 +37,5 @@ class HomeActivity : AppCompatActivity() {
             val email = firebaseUser.email
 //            binding.emailTv.text =email
         }
-
     }
 }

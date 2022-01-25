@@ -14,13 +14,6 @@ import androidx.navigation.fragment.navArgs
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentEditAppointmentBinding
 import com.afrahjadan.elderlycareapp.viewmodel.AppointmentInfoViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.android.awaitFrame
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -58,7 +51,7 @@ class EditAppointmentFragment : Fragment() {
         val action =
             EditAppointmentFragmentDirections.actionEditAppointmentFragmentToViewAppointmentFragment()
 //            repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        viewModel.isSucces.observe(viewLifecycleOwner, {
+        viewModel.isSuccess.observe(viewLifecycleOwner, {
             if (it== true) {findNavController().navigate(action)
                 viewModel.changeBoolean(false)}
             else return@observe
@@ -70,10 +63,10 @@ class EditAppointmentFragment : Fragment() {
         var appointmentItem: AppointmentItem
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                val  list =    viewModel.getTheapointments()
-                list.collect { apointList ->
-                val  findMyappoitment = apointList.find { id == it.appUserId }
-                  appointmentItem = AppointmentItem(findMyappoitment!!.appointmentDate,findMyappoitment!!.appointmentTime,findMyappoitment!!.appointmentReason,findMyappoitment!!.hospitalName)
+                val  list =    viewModel.getTheAppointments()
+                list.collect { appointmentList ->
+                val  findMyaAppointment = appointmentList.find { id == it.appUserId }
+                  appointmentItem = AppointmentItem(findMyaAppointment!!.appointmentDate,findMyaAppointment!!.appointmentTime,findMyaAppointment!!.appointmentReason,findMyaAppointment!!.hospitalName)
 
                     binding.hospitalNameEdit.setText(appointmentItem.hospitalName)
                     binding.appResEdit.setText(appointmentItem.appointmentReason)
@@ -89,7 +82,7 @@ class EditAppointmentFragment : Fragment() {
     private fun setAppData() {
         val id = navArg.id
         lifecycleScope.launch {
-            viewModel.getTheapointments().collect{
+            viewModel.getTheAppointments().collect{
 
               val x =  it.find {
                   it.appUserId.contains(id)}

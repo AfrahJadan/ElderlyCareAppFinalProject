@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
-import com.afrahjadan.elderlycareapp.data.AppointmentList
+import com.afrahjadan.elderlycareapp.data.UserModel
 import com.afrahjadan.elderlycareapp.util.APPOINTMENT
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
@@ -21,11 +21,11 @@ class AppointmentInfoViewModel: ViewModel() {
 
     val auth = FirebaseAuth.getInstance().currentUser
 
-    private var _isSucces = MutableLiveData<Boolean>(false)
-  val isSucces = _isSucces
+    private var _isSuccess = MutableLiveData<Boolean>(false)
+  val isSuccess = _isSuccess
 
-    private val _appoiments = MutableStateFlow(mutableListOf<AppointmentItem>())
-    val appoinments = _appoiments.asLiveData()
+    private val _appointments = MutableStateFlow(mutableListOf<AppointmentItem>())
+    val appointments = _appointments.asLiveData()
 init {
     getAppointment()
 }
@@ -55,38 +55,38 @@ init {
 
      private fun setTheAppointment(appointmentItemList: List<AppointmentItem>) {
 
-        val add = appDataBase.collection("Appointment").document("${auth?.uid}")
+        val add = appDataBase.collection("User").document("${auth?.uid}")
 
         add.set(
             mapOf(APPOINTMENT to appointmentItemList.toSet().toList() ), SetOptions.merge()
         ) .addOnCompleteListener {
-            if (it.isSuccessful) _isSucces.value = true
+            if (it.isSuccessful) _isSuccess.value = true
         }
 
     }
 
     fun updateTheList(appointmentItemList: List<AppointmentItem>) {
-        val update = appDataBase.collection("Appointment").document("${auth?.uid}")
+        val update = appDataBase.collection("User").document("${auth?.uid}")
         update.update(
             mapOf(APPOINTMENT to appointmentItemList)
         ).addOnCompleteListener {
-            if (it.isSuccessful) _isSucces.value = true
+            if (it.isSuccessful) _isSuccess.value = true
         }
 
     }
 
     fun changeBoolean(boolean: Boolean){
-        _isSucces.value = boolean
+        _isSuccess.value = boolean
     }
 
-    fun getTheapointments() = getAppointment()
+    fun getTheAppointments() = getAppointment()
 
    private fun getAppointment(): Flow<List<AppointmentItem>> = callbackFlow {
-        val getAppoitnment = appDataBase.collection("Appointment").document("${auth?.uid}")
+        val getAppointment = appDataBase.collection("User").document("${auth?.uid}")
 
-    getAppoitnment.get().addOnCompleteListener { task ->
-        val appointments = task.result.toObject(AppointmentList::class.java)
-        _appoiments.update {
+    getAppointment.get().addOnCompleteListener { task ->
+        val appointments = task.result.toObject(UserModel::class.java)
+        _appointments.update {
             appointments?.appointment?.let {
                 it.toMutableList()
             }!!
@@ -96,5 +96,4 @@ init {
 
         awaitClose {  }
     }
-
 }

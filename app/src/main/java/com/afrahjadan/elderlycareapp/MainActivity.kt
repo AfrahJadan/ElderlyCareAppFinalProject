@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
+import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.databinding.ActivityMainBinding
 import com.afrahjadan.elderlycareapp.util.APPOINTMENT
+import com.afrahjadan.elderlycareapp.util.MEDICINEITEM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -82,13 +84,14 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { authResult ->
 //                Log.d(TAG, "firebaseAuthWithGoogleAccount: LoggedIn")
                 val firebaseUser = firebaseAuth.currentUser
-                val appDataBase = Firebase.firestore
-
-                val add = appDataBase.collection("Appointment").document("${firebaseAuth.currentUser?.uid}")
-
-                add.set(
-                    mapOf(APPOINTMENT to listOf<AppointmentItem>() ), SetOptions.merge()
-                )
+//                val appDataBase = Firebase.firestore
+//
+//                val add = appDataBase.collection("User").document("${firebaseAuth.currentUser?.uid}")
+//
+//                add.set(
+//                    mapOf(APPOINTMENT to listOf<AppointmentItem>(),
+//                          MEDICINEITEM to listOf<MedicineItem>() )
+//                )
                 val uid = firebaseUser!!.uid
                 val email = firebaseUser.email
 
@@ -99,10 +102,11 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d(TAG, "firebaseAuthWithGoogleAccount: Account created... \n$email")
                      val appDataBase = Firebase.firestore
 
-                    val add = appDataBase.collection("Appointment").document("${firebaseAuth.currentUser?.uid}")
+                    val add = appDataBase.collection("User").document("${firebaseAuth.currentUser?.uid}")
 
     add.set(
-        mapOf(APPOINTMENT to listOf<AppointmentItem>() ), SetOptions.merge()
+        mapOf(APPOINTMENT to listOf<AppointmentItem>() ,
+              MEDICINEITEM to listOf<MedicineItem>() ), SetOptions.merge()
     )
 
 

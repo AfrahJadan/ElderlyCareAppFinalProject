@@ -6,26 +6,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afrahjadan.elderlycareapp.data.MedicineItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentViewAndAddMedicineBinding
 import com.afrahjadan.elderlycareapp.medicineAdapter.MedAdapter
+import com.afrahjadan.elderlycareapp.viewmodel.ViewMedicineViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class ViewMedicineFragment : Fragment() {
 
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<MedAdapter.MedViewHolder>? = null
+//    private var layoutManager: RecyclerView.LayoutManager? = null
+//    private var adapter: RecyclerView.Adapter<MedAdapter.MedViewHolder>? = null
     val db = FirebaseFirestore.getInstance()
-    private var medInfo = mutableListOf<MedicineItem?>()
+    private val navarg: ViewMedicineFragmentArgs by navArgs()
+    private val viewModel: ViewMedicineViewModel by activityViewModels()
+//    private var medInfo = mutableListOf<MedicineItem?>()
     private lateinit var binding: FragmentViewAndAddMedicineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -33,9 +42,10 @@ class ViewMedicineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        deleteItem()
 
         binding = FragmentViewAndAddMedicineBinding.inflate(inflater, container, false)
-        binding.recycleMed.apply {
+        binding.recycleMed .apply {
             layoutManager = LinearLayoutManager(requireContext())
         }
         binding.medAdd.setOnClickListener {
@@ -44,41 +54,43 @@ class ViewMedicineFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        eventChangeListener()
+//        eventChangeListener()
         return binding.root
 
     }
 
-    private fun eventChangeListener() {
-        db.collection("Medicines").addSnapshotListener(object : EventListener<QuerySnapshot> {
-            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                if (error != null) {
-                    Log.e("error", error.message.toString())
-                    return
-                }
-                for (dc: DocumentChange in value?.documentChanges!!) {
-                    if (dc.type == DocumentChange.Type.ADDED) {
-                        medInfo.add(dc.document.toObject(MedicineItem::class.java))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.getTheMedicines()
+                getMedData()
+            }
+        }
+    }
+
+    private fun getMedData() {
+        val adapter = MedAdapter()
+        binding.recycleMed.adapter = adapter
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                val list = viewModel.getTheMedicines()
+                list.collect{medList ->
+                    medList.let {
+                        adapter.submitList(it)
                     }
                 }
-                val adapter =
-                    MedAdapter(medInfo.filter { it?.userId == FirebaseAuth.getInstance().currentUser?.uid }
-                        .toMutableList())
-                binding.recycleMed.adapter = adapter
             }
-        })
+        }
     }
+
+    fun deleteItem(){
+        val dose = navarg.dose
+        if (dose.isNotBlank()) viewModel.prepareTheMedicineDataToDelete(dose)
+
+    }
+
 }
 
-//     val getMad = db.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString())
-//            .collection("Medicines").addSnapshotListener(object : EventListener<QuerySnapshot> {
-//        override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-//                if (error != null) {
-//                    Log.e("error", error.message.toString())
-//                    return
-//                }
-//                for (dc: DocumentChange in value?.documentChanges!!) {
-//                    if (dc.type == DocumentChange.Type.ADDED) {
-//                        medInfo.add(dc.document.toObject(MedicineItem::class.java))
-//                    }
-//                }

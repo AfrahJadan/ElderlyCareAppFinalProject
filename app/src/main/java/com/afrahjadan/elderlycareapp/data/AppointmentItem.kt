@@ -8,9 +8,12 @@ data class AppointmentItem(
     var appUserId: String = "",
 )
 
-data class AppointmentList(
+data class UserModel(
+    val medicineItem: List<MedicineItem> = listOf(),
     val appointment: List<AppointmentItem> = listOf()
+
 )
+
 
 //val timestamp: Long=0L
 //{

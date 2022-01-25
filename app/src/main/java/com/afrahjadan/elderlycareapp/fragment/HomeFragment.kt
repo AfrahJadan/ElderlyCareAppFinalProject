@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
         binding.btnMed.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragment2ToViewMedicineFragment()
+            val action = HomeFragmentDirections.actionHomeFragment2ToViewMedicineFragment("")
             findNavController().navigate(action)
         }
         binding.btnApp.setOnClickListener {

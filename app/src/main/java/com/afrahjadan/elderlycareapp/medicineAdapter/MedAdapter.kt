@@ -1,72 +1,69 @@
 package com.afrahjadan.elderlycareapp.medicineAdapter
 
-
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.data.MedicineItem
+import com.afrahjadan.elderlycareapp.databinding.MedItemListBinding
 import com.afrahjadan.elderlycareapp.fragment.ViewMedicineFragmentDirections
-import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
-import java.util.*
 
-class MedAdapter(private val medList: MutableList<MedicineItem?>) :
-    RecyclerView.Adapter<MedAdapter.MedViewHolder>() {
-    private lateinit var id: String
-    private val db = FirebaseFirestore.getInstance()
-    class MedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val medShow: TextView = itemView.findViewById(R.id.medShow)
-        val dosMed: TextView = itemView.findViewById(R.id.dozMed)
-        val medTime: TextView = itemView.findViewById(R.id.timeMed)
-        val medDate: TextView = itemView.findViewById(R.id.dateMed)
-        val medEdit: ImageButton = itemView.findViewById(R.id.editMed)
-        val medDelete: ImageButton = itemView.findViewById(R.id.deleteMed)
+
+class MedAdapter : ListAdapter<MedicineItem, MedAdapter.MedItemViewHolder>(MedItemViewHolder) {
+
+    class MedItemViewHolder(var binding: MedItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(itemMed: MedicineItem) {
+            binding.medShow.text = itemMed.medType
+            binding.dozMed.text = itemMed.dose
+            binding.timeMed.text = itemMed.medTime
+            binding.dateMed.text = itemMed.medDate
+        }
+
+        companion object DiffCallback : DiffUtil.ItemCallback<MedicineItem>() {
+            override fun areItemsTheSame(oldItem: MedicineItem, newItem: MedicineItem): Boolean {
+                return oldItem.userId == newItem.userId
+            }
+
+            override fun areContentsTheSame(oldItem: MedicineItem, newItem: MedicineItem): Boolean {
+                return oldItem.userId == newItem.userId
+            }
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedViewHolder {
-        val medAdapterLayout = LayoutInflater.from(parent.context).inflate(
-            R.layout.med_item_list,
-            parent, false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedItemViewHolder {
+        return MedItemViewHolder(
+            MedItemListBinding.inflate
+                (LayoutInflater.from(parent.context), parent, false)
         )
-        return MedViewHolder(medAdapterLayout)
     }
 
-    override fun onBindViewHolder(holder: MedViewHolder, position: Int) {
-        val medItem = medList[position]
-        id = medItem!!.id
-        holder.medShow.text = medItem?.medType.toString()
-        holder.dosMed.text = medItem?.dose.toString()
-        holder.medTime.text = medItem?.medTime.toString()
-        holder.medDate.text = medItem?.medDate.toString()
-
-
-
-        holder.medEdit.setOnClickListener {
+    override fun onBindViewHolder(holder: MedItemViewHolder, position: Int) {
+        val medicinesList = getItem(position)
+        holder.binding.editMed.setOnClickListener {
 
             val action =
                 ViewMedicineFragmentDirections.actionViewMedicineFragmentToEditMedicineFragment(
-                    medItem!!.id
+                    medicinesList.userId
                 )
-            holder.itemView.findNavController()
-                .navigate(action)
+
+            holder.itemView.findNavController().navigate(action)
+
         }
-        holder.medDelete.setOnClickListener {
-            deleteMad()
+        holder.binding.deleteMed.setOnClickListener {
+
+            val action =
+                ViewMedicineFragmentDirections.actionViewMedicineFragmentSelf(medicinesList.dose)
+                 holder.itemView.findNavController().navigate(action)
+
+
         }
+        holder.bind(medicinesList)
     }
-
-    override fun getItemCount(): Int {
-        return medList.size
-    }
-
-    private fun deleteMad() {
-        db.collection("Medicines").document(id).delete()
-    }
-
 
 }
+
+
+
+

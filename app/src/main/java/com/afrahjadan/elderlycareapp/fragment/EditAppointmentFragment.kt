@@ -5,23 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.afrahjadan.elderlycareapp.R
 import com.afrahjadan.elderlycareapp.data.AppointmentItem
 import com.afrahjadan.elderlycareapp.databinding.FragmentEditAppointmentBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
+import com.afrahjadan.elderlycareapp.viewmodel.AppointmentInfoViewModel
+import kotlinx.coroutines.launch
 
 
 class EditAppointmentFragment : Fragment() {
     private lateinit var binding: FragmentEditAppointmentBinding
     private val navArg: EditAppointmentFragmentArgs by navArgs()
-    val db = FirebaseFirestore.getInstance()
+    private val viewModel: AppointmentInfoViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class EditAppointmentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentEditAppointmentBinding.inflate(layoutInflater)
         getAppData()
@@ -39,6 +39,7 @@ class EditAppointmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getAppData()
 
         binding.SaveEditBtnApp.setOnClickListener {
             setAppData()
@@ -46,36 +47,60 @@ class EditAppointmentFragment : Fragment() {
                 EditAppointmentFragmentDirections.actionEditAppointmentFragmentToViewAppointmentFragment()
             findNavController().navigate(action)
         }
+
+        val action =
+            EditAppointmentFragmentDirections.actionEditAppointmentFragmentToViewAppointmentFragment()
+//            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewModel.isSuccess.observe(viewLifecycleOwner, {
+            if (it== true) {findNavController().navigate(action)
+                viewModel.changeBoolean(false)}
+            else return@observe
+        })
     }
 
     private fun getAppData() {
         val id = navArg.id
-        db.collection("Appointment").document(id).get()
-            .addOnSuccessListener {
-                val getApp = it.toObject(AppointmentItem::class.java)
-                binding.apply {
-                    editAppDate.setText(getApp?.appointmentDate.toString())
-                    appTimeEdit.setText(getApp?.appointmentTime.toString())
-                    appResEdit.setText(getApp?.appointmentReason.toString())
-                    hospitalNameEdit.setText(getApp?.hospitalName.toString())
+        var appointmentItem: AppointmentItem
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                val  list =    viewModel.getTheAppointments()
+                list.collect { appointmentList ->
+                val  findMyaAppointment = appointmentList.find { id == it.appUserId }
+                  appointmentItem = AppointmentItem(findMyaAppointment!!.appointmentDate,findMyaAppointment!!.appointmentTime,findMyaAppointment!!.appointmentReason,findMyaAppointment!!.hospitalName)
+
+                    binding.hospitalNameEdit.setText(appointmentItem.hospitalName)
+                    binding.appResEdit.setText(appointmentItem.appointmentReason)
+                    binding.appTimeEdit.setText(appointmentItem.appointmentTime)
+                    binding.editAppDate.setText(appointmentItem.appointmentDate)
                 }
+        }
+
             }
 
     }
 
     private fun setAppData() {
         val id = navArg.id
-        db.collection("Appointment").document(id)
-            .set(
-                AppointmentItem(
-                    appointmentDate = binding.editAppDate.text.toString(),
-                    appointmentTime = binding.appTimeEdit.text.toString(),
-                    appointmentReason = binding.appResEdit.text.toString(),
-                    hospitalName = binding.hospitalNameEdit.text.toString(),
-                    appUserId = Firebase.auth.currentUser!!.uid,
-                    id = id
-                ), SetOptions.merge()
-            )
+        lifecycleScope.launch {
+            viewModel.getTheAppointments().collect{
+
+              val x =  it.find {
+                  it.appUserId.contains(id)}
+                val appoitnmetList = it.toMutableList()
+                appoitnmetList[appoitnmetList.indexOf(x)] = AppointmentItem(
+                    binding.editAppDate.text.toString(),
+                    binding.appTimeEdit.text.toString(),
+                    binding.appResEdit.text.toString(),
+                    binding.hospitalNameEdit.text.toString(),
+                    id)
+
+                viewModel.updateTheList(appoitnmetList)
+
+
+              }
+        }
+
+        }
     }
-}
+
 

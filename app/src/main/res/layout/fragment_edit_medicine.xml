@@ -73,10 +73,11 @@
                     android:hint="@string/medicine_time_edit"
                     android:inputType="time"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/SaveToEditBtn"
+                android:background="@drawable/background_color"
                 android:hint="@string/save_changes_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

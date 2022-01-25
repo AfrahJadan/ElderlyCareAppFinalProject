@@ -76,9 +76,10 @@
                     android:inputType="textMultiLine"
                     android:minHeight="100dp" />
             </com.google.android.material.textfield.TextInputLayout>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/SaveEditBtn_app"
                 style="@style/Widget.AppCompat.Button"
+                android:background="@drawable/background_color"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/save_changes"

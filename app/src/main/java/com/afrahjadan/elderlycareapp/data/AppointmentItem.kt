@@ -1,16 +1,19 @@
 package com.afrahjadan.elderlycareapp.data
 
-import java.sql.Timestamp
-
 data class AppointmentItem(
     var appointmentDate: String = "",
     var appointmentTime: String = "",
     var appointmentReason: String = "",
     var hospitalName: String = "",
     var appUserId: String = "",
-    val id: String = ""
+)
+
+data class UserModel(
+    val medicineItem: List<MedicineItem> = listOf(),
+    val appointment: List<AppointmentItem> = listOf()
 
 )
+
 
 //val timestamp: Long=0L
 //{

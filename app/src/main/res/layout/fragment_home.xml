@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="247dp"
         android:layout_height="258dp"
         android:src="@drawable/icone44"
@@ -40,7 +40,7 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_marginTop="64dp"
-        android:drawableRight="@drawable/ic_baseline_add_box_24"
+        android:drawableEnd="@drawable/ic_baseline_add_box_24"
         android:hint="@string/appointment"
         android:padding="6dp"
         android:textSize="20sp"

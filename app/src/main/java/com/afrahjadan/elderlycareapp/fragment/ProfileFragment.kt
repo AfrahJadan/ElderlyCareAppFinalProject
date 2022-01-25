@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.afrahjadan.elderlycareapp.MainActivity
 import com.afrahjadan.elderlycareapp.NotificationsActivity
 import com.afrahjadan.elderlycareapp.R
+import com.afrahjadan.elderlycareapp.data.User
 import com.afrahjadan.elderlycareapp.databinding.FragmentProfileBinding
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
@@ -23,6 +26,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,6 +46,12 @@ class ProfileFragment : Fragment() {
         }
 
         SimpleDateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+
+        binding.editProfile.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
+            findNavController().navigate(action)
+        }
+        getProfileImage()
         return binding.root
     }
 
@@ -53,17 +63,13 @@ class ProfileFragment : Fragment() {
                 val intent = Intent(it, MainActivity::class.java)
                 it.startActivity(intent)
             }
-//            val intent =Intent(activity,MainActivity::class.java)
-//            activity?.startActivity(intent)
-            // startActivity(Intent(this, MainActivity::class.java))
-            // finish()
+
         } else {
             val email = firebaseUser.email
             binding.emailTv.text = email
         }
 
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -74,12 +80,29 @@ class ProfileFragment : Fragment() {
             firebaseAuth.signOut()
             checkUser()
         }
+        val db = Firebase.firestore
+        val profileUser = db.collection("User").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).addSnapshotListener { value, error ->
+            if(error != null){
+                Log.d("Tag","error")
+            }
+            if(value?.data != null){
+               val profUser = value.toObject(User::class.java)
+                binding.healthCare.text = profUser?.healthSituation
+                binding.Notes.text = profUser?.notes
 
+            }
 
+        }
+        profileUser
     }
 
-    override fun onStart() {
-        super.onStart()
+   private fun getProfileImage(){
+        val image = FirebaseAuth.getInstance().currentUser?.photoUrl
+        Glide.with(this)
+            .load(image)
+            .fitCenter()
+            .placeholder(R.drawable.settings_icon)
+            .into(binding.profileImage)
     }
 
 }
